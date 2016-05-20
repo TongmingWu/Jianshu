@@ -1,0 +1,9 @@
+package com.tongming.jianshu.base;
+
+import android.app.Fragment;
+
+/**
+ * Created by Tongming on 2016/5/20.
+ */
+public class BaseFragment extends Fragment {
+}
