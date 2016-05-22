@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:elevation="1dp"
-    android:layout_width="wrap_content"
+    android:elevation="0dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
 
         <RelativeLayout
             android:id="@+id/rl_item_content"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
             android:layout_centerVertical="true">
 
             <ImageView
@@ -43,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/avatar"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 tools:text="文章描述文章描述" />
@@ -53,18 +54,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_desc"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="10dp"
                 tools:text="3245次阅-24评论-234喜欢" />
         </RelativeLayout>
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/cover"
-            android:layout_width="110dp"
-            android:layout_height="130dp"
+            android:layout_width="90dp"
+            android:layout_height="110dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop" />-->
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

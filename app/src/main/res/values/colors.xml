@@ -3,4 +3,5 @@
     <color name="colorPrimary">#e58c7c</color>
     <color name="colorPrimaryDark">#d96f5d</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="divide_gray">@android:color/white</color>
 </resources>

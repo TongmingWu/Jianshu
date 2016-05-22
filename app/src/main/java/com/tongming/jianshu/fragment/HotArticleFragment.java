@@ -24,6 +24,8 @@ import com.tongming.jianshu.base.BaseFragment;
 import com.tongming.jianshu.bean.ArticleList;
 import com.tongming.jianshu.presenter.ArticlePresenterCompl;
 import com.tongming.jianshu.util.RecyclerViewUtil;
+import com.tongming.jianshu.util.ToastUtil;
+import com.tongming.jianshu.view.RecyclerViewDivider;
 
 import butterknife.BindView;
 
@@ -55,6 +57,9 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
     protected void initViews() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new RecyclerViewDivider(
+                getActivity(), LinearLayoutManager.VERTICAL, 5, getResources().getColor(R.color.divide_gray)
+        ));
     }
 
     @Override
@@ -94,9 +99,17 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
                 refreshLayout.setRefreshing(false);
             }
         });
+
         adapter = new ArticleRecylerViewAdapter(getActivity(), list);
-        /*setHeaderView(recyclerView);
-        recyclerView.setAdapter(adapter);*/
+        //点击文章的事件监听
+        adapter.setOnItemClickListener(new ArticleRecylerViewAdapter.onRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, String slug) {
+                ToastUtil.showToast(getActivity(), slug);
+
+            }
+        });
+        //添加header
         HeaderAndFooterRecyclerViewAdapter mAdapter = new HeaderAndFooterRecyclerViewAdapter(adapter);
         recyclerView.setAdapter(mAdapter);
 
@@ -122,10 +135,12 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
                 };
             }
         }, list.getBanner()).setPageIndicator(new int[]{R.drawable.point_bg_normal, R.drawable.point_bg_enable})
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
-                .setCanLoop(true);
-        banner.setLayoutParams(new LinearLayoutCompat.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().getWidth(),300));
-        RecyclerViewUtil.setHeaderView(recyclerView,banner);
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
+        banner.setCanLoop(true);
+        final float scale = getActivity().getResources().getDisplayMetrics().density;
+        int height = (int) (180 * scale + 0.5f);
+        banner.setLayoutParams(new LinearLayoutCompat.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().getWidth(), height));
+        RecyclerViewUtil.setHeaderView(recyclerView, banner);
 
     }
 }
