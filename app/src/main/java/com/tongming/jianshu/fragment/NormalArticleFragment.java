@@ -9,6 +9,16 @@ import com.tongming.jianshu.base.BaseFragment;
  * Created by Tongming on 2016/5/21.
  */
 public class NormalArticleFragment extends BaseFragment {
+
+    private int type;
+
+    public NormalArticleFragment() {
+    }
+
+    public NormalArticleFragment(int type) {
+        this.type = type;
+    }
+
     @Override
     protected void initViews() {
 
@@ -16,7 +26,7 @@ public class NormalArticleFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_article_normal;
+        return R.layout.fragment_article;
     }
 
     @Override

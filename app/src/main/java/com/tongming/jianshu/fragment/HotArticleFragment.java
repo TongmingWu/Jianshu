@@ -1,6 +1,7 @@
 package com.tongming.jianshu.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,13 +19,13 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.holder.Holder;
 import com.bumptech.glide.Glide;
 import com.tongming.jianshu.R;
+import com.tongming.jianshu.activity.ArticleDetailActivity;
 import com.tongming.jianshu.adapter.ArticleRecylerViewAdapter;
 import com.tongming.jianshu.adapter.HeaderAndFooterRecyclerViewAdapter;
 import com.tongming.jianshu.base.BaseFragment;
 import com.tongming.jianshu.bean.ArticleList;
 import com.tongming.jianshu.presenter.ArticlePresenterCompl;
 import com.tongming.jianshu.util.RecyclerViewUtil;
-import com.tongming.jianshu.util.ToastUtil;
 import com.tongming.jianshu.view.RecyclerViewDivider;
 
 import butterknife.BindView;
@@ -64,7 +65,7 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_article_hot;
+        return R.layout.fragment_article;
     }
 
     @Override
@@ -105,8 +106,9 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
         adapter.setOnItemClickListener(new ArticleRecylerViewAdapter.onRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, String slug) {
-                ToastUtil.showToast(getActivity(), slug);
-
+                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                intent.putExtra("slug",slug);
+                startActivity(intent);
             }
         });
         //添加header

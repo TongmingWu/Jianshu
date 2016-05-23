@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -17,10 +19,20 @@ import okhttp3.OkHttpClient;
 public class BaseApplication extends Application {
     public static OkHttpClient client;
     public static Gson gson;
+    public static ImageLoader imageLoader;
+    private static BaseApplication instance;
+
+    public static BaseApplication getInstance() {
+        return instance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
+        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(this).build();
+        imageLoader = ImageLoader.getInstance();
+        imageLoader.init(configuration);
         File cacheFile = new File(getCacheDir().getPath());
         int cacheSize = 10 * 1024 * 1024;
         Cache cache = new Cache(cacheFile, cacheSize);

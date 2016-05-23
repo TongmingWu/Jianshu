@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_article"
+        android:layout_marginBottom="60dp"
         android:layout_below="@id/tl_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -32,5 +33,5 @@
         app:bnbActiveColor="@color/colorPrimary"
         app:bnbBackgroundStyle="background_style_static"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="60dp"/>
 </RelativeLayout>

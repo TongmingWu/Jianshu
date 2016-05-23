@@ -1,10 +1,14 @@
 package com.tongming.jianshu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.widget.ImageButton;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -14,7 +18,9 @@ import com.tongming.jianshu.base.BaseActivity;
 import com.tongming.jianshu.base.BaseFragment;
 import com.tongming.jianshu.fragment.HotArticleFragment;
 import com.tongming.jianshu.fragment.NormalArticleFragment;
+import com.tongming.jianshu.util.ToastUtil;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,12 +50,30 @@ public class HomeActivity extends BaseActivity {
 
     private String[] TAB = {"热门", "新上榜", "日报", "七日热门", "三十日热门", "市集", "有奖活动", "简书出版", "简书博客"};
 
+    private boolean isExit;
+
+    private MyHandler mHandler = new MyHandler(this);
+
+    private class MyHandler extends Handler {
+        private final WeakReference<HomeActivity> mActivity;
+
+        private MyHandler(HomeActivity activity) {
+            mActivity = new WeakReference<HomeActivity>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            HomeActivity activity = mActivity.get();
+            if (activity != null) {
+                isExit = false;
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
-        initViews();
     }
 
     @Override
@@ -87,11 +111,11 @@ public class HomeActivity extends BaseActivity {
                               }
         );
         tl_content.setupWithViewPager(vp_article);
-        navigationBar.addItem(new BottomNavigationItem(R.drawable.cb_icon_discover_selected,"首页"))
-                .addItem(new BottomNavigationItem(R.drawable.cb_icon_guanzhu_normal,"关注"))
-                .addItem(new BottomNavigationItem(R.drawable.cb_icon_pen_normal,"投稿"))
-                .addItem(new BottomNavigationItem(R.drawable.cb_icon_tixing_normal,"提醒"))
-                .addItem(new BottomNavigationItem(R.drawable.cb_icon_more_normal,"更多"))
+        navigationBar.addItem(new BottomNavigationItem(R.drawable.cb_icon_discover_selected, "首页"))
+                .addItem(new BottomNavigationItem(R.drawable.cb_icon_guanzhu_normal, "关注"))
+                .addItem(new BottomNavigationItem(R.drawable.cb_icon_pen_normal, "投稿"))
+                .addItem(new BottomNavigationItem(R.drawable.cb_icon_tixing_normal, "提醒"))
+                .addItem(new BottomNavigationItem(R.drawable.cb_icon_more_normal, "更多"))
                 .initialise();
         navigationBar.setTabSelectedListener(new BottomNavigationBar.OnTabSelectedListener() {
             @Override
@@ -109,6 +133,28 @@ public class HomeActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return false;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exit() {
+        if (!isExit) {
+            isExit = true;
+            ToastUtil.showToast(HomeActivity.this, "再点一次退出");
+            mHandler.sendEmptyMessageDelayed(0, 2000);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
+            System.exit(0);
+        }
     }
 
 }
