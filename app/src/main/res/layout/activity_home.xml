@@ -1,37 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.HomeActivity">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/bar_home"/>
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tl_content"
-        android:layout_below="@id/include"
-        app:tabMode="scrollable"
-        app:tabIndicatorColor="@null"
-        app:tabPaddingEnd="5dp"
-        app:tabPaddingStart="5dp"
-        app:tabSelectedTextColor="@color/colorPrimary"
-        app:tabTextAppearance="@style/ContentTabTextAppearance"
+    <RelativeLayout
+        android:id="@+id/rl_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_article"
-        android:layout_marginBottom="60dp"
-        android:layout_below="@id/tl_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
+
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
         android:id="@+id/bnb"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        app:bnbMode="mode_shifting"
         app:bnbActiveColor="@color/colorPrimary"
         app:bnbBackgroundStyle="background_style_static"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"/>
+        app:bnbMode="mode_shifting" />
 </RelativeLayout>

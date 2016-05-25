@@ -3,15 +3,12 @@ package com.tongming.jianshu.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
@@ -25,18 +22,17 @@ import com.tongming.jianshu.adapter.HeaderAndFooterRecyclerViewAdapter;
 import com.tongming.jianshu.base.BaseFragment;
 import com.tongming.jianshu.bean.ArticleList;
 import com.tongming.jianshu.presenter.ArticlePresenterCompl;
+import com.tongming.jianshu.util.LogUtil;
 import com.tongming.jianshu.util.RecyclerViewUtil;
-import com.tongming.jianshu.view.RecyclerViewDivider;
 
 import butterknife.BindView;
 
 /**
  * Created by Tongming on 2016/5/21.
  */
-public class HotArticleFragment extends BaseFragment implements IArticleView {
+public class ArticleFragment extends BaseFragment implements IArticleView {
 
     private static final String TAG = "HOT";
-    private boolean isPrepared = false;
     private boolean flag = false;
 
     @BindView(R.id.hot_swipe)
@@ -46,21 +42,23 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
     @BindView(R.id.rv_hot)
     RecyclerView recyclerView;
     private ArticleRecylerViewAdapter adapter;
+    private int type;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        ButterKnife.bind(this, mRootView);
-        return super.onCreateView(inflater, container, savedInstanceState);
+    public static ArticleFragment newInstance(int type) {
+        ArticleFragment articleFragment = new ArticleFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("type", type);
+        articleFragment.setArguments(bundle);
+        return articleFragment;
     }
 
     @Override
     protected void initViews() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addItemDecoration(new RecyclerViewDivider(
+        /*recyclerView.addItemDecoration(new RecyclerViewDivider(
                 getActivity(), LinearLayoutManager.VERTICAL, 5, getResources().getColor(R.color.divide_gray)
-        ));
+        ));*/
     }
 
     @Override
@@ -70,8 +68,8 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
 
     @Override
     protected void afterCreate(Bundle saveInstanceState) {
-        isPrepared = true;
-        lazyLoad();
+        /*isPrepared = true;
+        lazyLoad();*/
     }
 
     @Override
@@ -87,7 +85,9 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
                 }
             });
             ArticlePresenterCompl compl = new ArticlePresenterCompl(this);
-            compl.getHotArticle();
+            type = getArguments().getInt("type");
+            LogUtil.d(TAG, type + "");
+            compl.getArticleList(type + "");
             flag = true;
         }
     }
@@ -107,42 +107,45 @@ public class HotArticleFragment extends BaseFragment implements IArticleView {
             @Override
             public void onItemClick(View view, String slug) {
                 Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                intent.putExtra("slug",slug);
+                intent.putExtra("slug", slug);
                 startActivity(intent);
             }
         });
-        //添加header
-        HeaderAndFooterRecyclerViewAdapter mAdapter = new HeaderAndFooterRecyclerViewAdapter(adapter);
-        recyclerView.setAdapter(mAdapter);
+        if (type == 0) {
+            //添加header
+            HeaderAndFooterRecyclerViewAdapter mAdapter = new HeaderAndFooterRecyclerViewAdapter(adapter);
+            recyclerView.setAdapter(mAdapter);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ConvenientBanner banner = (ConvenientBanner) View.inflate(getActivity(), R.layout.item_banner, null);
-        banner.setPages(new CBViewHolderCreator() {
-            @Override
-            public Object createHolder() {
-                return new Holder<String>() {
-                    private ImageView imageView;
+            ConvenientBanner banner = (ConvenientBanner) View.inflate(getActivity(), R.layout.item_banner, null);
+            banner.setPages(new CBViewHolderCreator() {
+                @Override
+                public Object createHolder() {
+                    return new Holder<String>() {
+                        private ImageView imageView;
 
-                    @Override
-                    public View createView(Context context) {
-                        imageView = new ImageView(context);
-                        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                        return imageView;
-                    }
+                        @Override
+                        public View createView(Context context) {
+                            imageView = new ImageView(context);
+                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                            return imageView;
+                        }
 
-                    @Override
-                    public void UpdateUI(Context context, int position, String data) {
-                        Glide.with(context).load(data).into(imageView);
-                    }
-                };
-            }
-        }, list.getBanner()).setPageIndicator(new int[]{R.drawable.point_bg_normal, R.drawable.point_bg_enable})
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
-        banner.setCanLoop(true);
-        final float scale = getActivity().getResources().getDisplayMetrics().density;
-        int height = (int) (180 * scale + 0.5f);
-        banner.setLayoutParams(new LinearLayoutCompat.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().getWidth(), height));
-        RecyclerViewUtil.setHeaderView(recyclerView, banner);
-
+                        @Override
+                        public void UpdateUI(Context context, int position, String data) {
+                            Glide.with(context).load(data).into(imageView);
+                        }
+                    };
+                }
+            }, list.getBanner()).setPageIndicator(new int[]{R.drawable.point_bg_normal, R.drawable.point_bg_enable})
+                    .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
+            banner.setManualPageable(true);
+            final float scale = getActivity().getResources().getDisplayMetrics().density;
+            int height = (int) (180 * scale + 0.5f);
+            banner.setLayoutParams(new LinearLayoutCompat.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().getWidth(), height));
+            RecyclerViewUtil.setHeaderView(recyclerView, banner);
+        }
+        if (type >= 1 && type <= 8) {
+            recyclerView.setAdapter(adapter);
+        }
     }
 }

@@ -80,6 +80,7 @@ public class HeaderAndFooterRecyclerViewAdapter extends RecyclerView.Adapter<Rec
             mInnerAdapter.unregisterAdapterDataObserver(mDataObserver);
         }
 
+        //mInnerAdapter == null
         this.mInnerAdapter = adapter;
         mInnerAdapter.registerAdapterDataObserver(mDataObserver);
         notifyItemRangeInserted(getHeaderViewsCount(), mInnerAdapter.getItemCount());
@@ -157,9 +158,9 @@ public class HeaderAndFooterRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         int headerViewsCountCount = getHeaderViewsCount();
-        if (viewType < TYPE_HEADER_VIEW + headerViewsCountCount) {
-            return new ViewHolder(mHeaderViews.get(viewType - TYPE_HEADER_VIEW));
-        } else if (viewType >= TYPE_FOOTER_VIEW && viewType < Integer.MAX_VALUE / 2) {
+        if (viewType < TYPE_HEADER_VIEW + headerViewsCountCount) {      //TYPE_HEADER_VIEW = Integer.MIN_VALUE
+            return new ViewHolder(mHeaderViews.get(viewType - TYPE_HEADER_VIEW));   //1个header的话等于0
+        } else if (viewType >= TYPE_FOOTER_VIEW && viewType < Integer.MAX_VALUE / 2) {  //FOOTER
             return new ViewHolder(mFooterViews.get(viewType - TYPE_FOOTER_VIEW));
         } else {
             return mInnerAdapter.onCreateViewHolder(parent, viewType - Integer.MAX_VALUE / 2);
@@ -190,7 +191,7 @@ public class HeaderAndFooterRecyclerViewAdapter extends RecyclerView.Adapter<Rec
         int headerViewsCountCount = getHeaderViewsCount();
         if (position < headerViewsCountCount) {
             return TYPE_HEADER_VIEW + position;
-        } else if (headerViewsCountCount <= position && position < headerViewsCountCount + innerCount) {
+        } else if (headerViewsCountCount <= position && position < headerViewsCountCount + innerCount) {    //除去头和尾
 
             int innerItemViewType = mInnerAdapter.getItemViewType(position - headerViewsCountCount);
             if (innerItemViewType >= Integer.MAX_VALUE / 2) {
@@ -198,6 +199,7 @@ public class HeaderAndFooterRecyclerViewAdapter extends RecyclerView.Adapter<Rec
             }
             return innerItemViewType + Integer.MAX_VALUE / 2;
         } else {
+            //TYPE_FOOTER_VIEW = Integer.MIN_VALUE + 1
             return TYPE_FOOTER_VIEW + position - headerViewsCountCount - innerCount;
         }
     }

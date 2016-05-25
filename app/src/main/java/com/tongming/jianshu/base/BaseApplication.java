@@ -40,6 +40,7 @@ public class BaseApplication extends Application {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
+                .followRedirects(true)
                 .cache(cache)
                 .build();
         gson = new GsonBuilder().create();

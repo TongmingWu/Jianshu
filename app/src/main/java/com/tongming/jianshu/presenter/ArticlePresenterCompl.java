@@ -5,9 +5,11 @@ import android.os.Looper;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.tongming.jianshu.activity.ArticleDetailActivity;
 import com.tongming.jianshu.base.BaseApplication;
 import com.tongming.jianshu.bean.ArticleList;
 import com.tongming.jianshu.fragment.IArticleView;
+import com.tongming.jianshu.util.LogUtil;
 import com.tongming.jianshu.util.URLUtil;
 
 import java.io.IOException;
@@ -31,16 +33,12 @@ public class ArticlePresenterCompl implements IArticlePresneter {
         mHandler = new Handler(Looper.getMainLooper());
     }
 
-    @Override
-    public void getArticle(String category) {
-
-    }
 
     @Override
-    public void getHotArticle() {
+    public void getArticleList(String cid) {
         OkHttpClient client = BaseApplication.client;
         final Gson gson = BaseApplication.gson;
-        Request request = new Request.Builder().url(URLUtil.HOT).build();
+        Request request = new Request.Builder().url(URLUtil.CATEGORY + cid).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -55,6 +53,7 @@ public class ArticlePresenterCompl implements IArticlePresneter {
                     @Override
                     public void run() {
                         mArticleView.onGetArticle(list);
+                        LogUtil.d(ArticleDetailActivity.class.getSimpleName(), "获取文章数据成功");
                     }
                 });
             }

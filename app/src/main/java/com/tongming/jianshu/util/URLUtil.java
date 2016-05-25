@@ -7,7 +7,7 @@ public class URLUtil {
     public static String SERVER = "http://192.168.191.1:5000/";
 //    public static String SERVER = "http://10.12.243.252:5000/";
     //获取其他类别的文章
-    public static String CATEGORY = SERVER+"category/";
+    public static String CATEGORY = SERVER+"article/";
     //获取首页热门的文章
     public static String HOT = SERVER+"hot";
     //获取七日热门的文章

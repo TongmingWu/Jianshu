@@ -130,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="@dimen/comment_bottom_margin"
                 android:layout_toRightOf="@id/tv_line_vertical">
 
 

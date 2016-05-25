@@ -6,19 +6,9 @@ import com.tongming.jianshu.R;
 import com.tongming.jianshu.base.BaseFragment;
 
 /**
- * Created by Tongming on 2016/5/21.
+ * Created by Tongming on 2016/5/25.
  */
-public class NormalArticleFragment extends BaseFragment {
-
-    private int type;
-
-    public NormalArticleFragment() {
-    }
-
-    public NormalArticleFragment(int type) {
-        this.type = type;
-    }
-
+public class MineFragment extends BaseFragment {
     @Override
     protected void initViews() {
 
@@ -26,7 +16,7 @@ public class NormalArticleFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_article;
+        return R.layout.fragment_mine;
     }
 
     @Override
