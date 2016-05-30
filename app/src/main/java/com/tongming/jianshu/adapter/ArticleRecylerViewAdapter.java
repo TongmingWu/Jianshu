@@ -14,6 +14,8 @@ import com.tongming.jianshu.R;
 import com.tongming.jianshu.bean.ArticleList;
 import com.tongming.jianshu.view.GlideGircleTransform;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -25,16 +27,20 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private ArticleList list;
+    private List<ArticleList.ResultsBean> list;
 
     private onRecyclerViewItemClickListener itemClickListener = null;
 
-    public ArticleRecylerViewAdapter(Context context, ArticleList list) {
+    public ArticleRecylerViewAdapter(Context context, List<ArticleList.ResultsBean> list) {
         this.context = context;
         this.list = list;
         layoutInflater = LayoutInflater.from(context);
     }
 
+
+    public List<ArticleList.ResultsBean> getList(){
+        return this.list;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -48,7 +54,7 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
         if (holder instanceof CusViewHolder) {
             if (holder instanceof CusViewHolder) {
-                ArticleList.ResultsBean bean = list.getResults().get(position);
+                ArticleList.ResultsBean bean = list.get(position);
                 holder.itemView.setTag(bean.getSlug());
                 String time = bean.getDate().split(" ")[1];
                 final float scale = context.getResources().getDisplayMetrics().density;
@@ -97,7 +103,7 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public int getItemCount() {
-        return list.getCount();
+        return list.size();
     }
 
     public static interface onRecyclerViewItemClickListener {

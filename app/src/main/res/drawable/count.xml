@@ -8,5 +8,8 @@
         android:top="2dp"
         android:right="2dp"
         android:bottom="2dp"/>
+    <size
+        android:width="15dp"
+        android:height="15dp"/>
 
 </shape>

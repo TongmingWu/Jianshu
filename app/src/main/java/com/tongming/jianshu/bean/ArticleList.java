@@ -7,27 +7,32 @@ import java.util.List;
  */
 public class ArticleList {
 
+
     /**
-     * banner : ["http://upload-images.jianshu.io/upload_images/1627319-18c0a839ccb97cb0.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-fff98764ba197bd2.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-6892f633a8edd976.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/1627319-18c0a839ccb97cb0.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-16e8904f5d8a27ce.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/1627319-b0f8923a7e1f7954.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-378f32eab2557423.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-869d090267248df3.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-2d3fce2fa36a7680.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-378664dc45a85a3d.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-7c3f2033f46a1aba.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-dbbb115da560cb61.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-2f2f8f6eb3fced05.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-e9fb710ab174bfd4.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-8ce13ddb9695a601.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-4885da1bbb82ea6b.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-869d090267248df3.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240","http://upload-images.jianshu.io/upload_images/654237-e03d694d71ac4982.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/320/h/240"]
-     * count : 18
-     * results : [{"title":"【简书\u2022换书会】北京第三期换书会纪实：我有一本书，足以慰风尘。","comment":"12","read":"1401","img":"http://upload-images.jianshu.io/upload_images/1627319-18c0a839ccb97cb0.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-05-18 17:50:55","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"20","slug":"d5f7bd05411f"},{"title":"\u201c你喜欢台湾的（____）？\u201d话题获奖结果公布：有一种喜欢，叫做台湾","comment":"12","read":"927","img":"http://upload-images.jianshu.io/upload_images/654237-fff98764ba197bd2.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-05-16 21:12:33","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"11","slug":"3c1f05ecf307"},{"title":"【特别策划】简书X扇贝 十万个冷笑话\u2026\u2026 ","comment":"111","read":"2070","img":"http://upload-images.jianshu.io/upload_images/654237-6892f633a8edd976.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-05-11 15:11:40","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"20","slug":"202b631d00dd"},{"title":"【简书\u2022换书会】北京第三期换书会召集：我有一本书，足以慰风尘。","comment":"70","read":"6635","img":"http://upload-images.jianshu.io/upload_images/1627319-18c0a839ccb97cb0.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-05-10 09:51:58","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"68","slug":"29c740652f68"},{"title":"我就是要送你一万块！ 简书神转折大赛","comment":"2477","read":"270271","img":"http://upload-images.jianshu.io/upload_images/654237-16e8904f5d8a27ce.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-05-06 21:03:21","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"1491","slug":"b113a0935c1a"},{"title":"简书 X 印象笔记 我的读书笔记大赏赛果公布：分享和展现，才是对收获的最大尊重","comment":"13","read":"4223","img":"http://upload-images.jianshu.io/upload_images/1627319-b0f8923a7e1f7954.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-05-05 14:22:29","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"62","slug":"c09096a17693"},{"title":"签文特别策划结果公布：我只想活在春天里","comment":"3","read":"792","img":"http://upload-images.jianshu.io/upload_images/654237-378f32eab2557423.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-05-03 18:21:46","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"11","slug":"704ed321c125"},{"title":"【简书\u2022换书会】上海第二期活动纪实：与你相遇在读书日","comment":"6","read":"1179","img":"http://upload-images.jianshu.io/upload_images/654237-869d090267248df3.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-28 19:46:14","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"12","slug":"dfe48ad13889"},{"title":"话题篇：你喜欢台湾的（____）？","comment":"398","read":"9111","img":"http://upload-images.jianshu.io/upload_images/654237-2d3fce2fa36a7680.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-27 23:26:41","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"136","slug":"24ef12543d7a"},{"title":"【特别策划】简书众测第一期：阿乐乐可模方插座","comment":"29","read":"20263","img":"http://upload-images.jianshu.io/upload_images/654237-378664dc45a85a3d.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-25 10:07:46","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"2","slug":"8cbe5bcb18fd"},{"title":"【特别策划】简书 X 东方明珠移动电视 城市印记征文大赛","comment":"61","read":"6837","img":"http://upload-images.jianshu.io/upload_images/654237-7c3f2033f46a1aba.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-20 16:27:16","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"167","slug":"92d6dd0d0825"},{"title":"【特别策划】简书 X PentaQ 我的LOL电竞故事征文大赛| 第二期：我在这里，MSI在上海","comment":"32","read":"4102","img":"http://upload-images.jianshu.io/upload_images/654237-dbbb115da560cb61.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-20 14:45:58","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"29","slug":"8cb7e271eaf1"},{"title":"【重磅活动】简书 × 人民日报 世界读书日分享会：挖掘书籍的力量","comment":"31","read":"6484","img":"http://upload-images.jianshu.io/upload_images/654237-2f2f8f6eb3fced05.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-19 18:29:16","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"58","slug":"2e35f2667616"},{"title":"简书X扇贝\u201c撩妹神句\u201d赛果公布：撩妹正当时，神句少不了","comment":"15","read":"3248","img":"http://upload-images.jianshu.io/upload_images/654237-e9fb710ab174bfd4.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-18 15:28:51","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"83","slug":"669178f34105"},{"title":"【简书作者访谈】你才20多岁，为什么害怕来不及\u2014\u2014林夏萨摩新书访谈","comment":"15","read":"3422","img":"http://upload-images.jianshu.io/upload_images/654237-8ce13ddb9695a601.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-15 16:45:29","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"43","slug":"8df7b21968b8"},{"title":"【特别策划】简书 X 看见音乐：表白，不需要在情人节","comment":"13","read":"2009","img":"http://upload-images.jianshu.io/upload_images/654237-4885da1bbb82ea6b.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-14 12:01:32","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"29","slug":"f485f9d5cb9e"},{"title":"【简书\u2022换书会】上海第二期活动召集：想在世界读书日遇见同样爱书的你","comment":"30","read":"5007","img":"http://upload-images.jianshu.io/upload_images/654237-869d090267248df3.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-13 20:07:50","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"42","slug":"9de00ed37317"},{"title":"【简书\u2022换书会】上海第一期活动纪实：交换我们的思维空间","comment":"0","read":"497","img":"http://upload-images.jianshu.io/upload_images/654237-e03d694d71ac4982.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","author":"简书活动精选","date":"2016-04-14 14:09:03","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","fav":"10","slug":"50ab1fddb801"}]
+     * banner : ["http://upload-images.jianshu.io/upload_images/1661508-a8cd574b1de121cb.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/640/h/240","http://upload-images.jianshu.io/upload_images/2053886-599b89cf88048cc0.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/640/h/240","http://upload-images.jianshu.io/upload_images/1218896-8f4b9c4f94e74bc2.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/640/h/240","http://upload-images.jianshu.io/upload_images/1122063-84283820bf94f14e.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/640/h/240","http://upload-images.jianshu.io/upload_images/1310352-9a6c815699b13335.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/640/h/240"]
+     * count : 20
+     * results : [{"author":"Sunflower_girl","read":"7348","slug":"f076a5caabc7","title":"大学室友教会我的那些事","fav":"356","img":"http://upload-images.jianshu.io/upload_images/1661508-a8cd574b1de121cb.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"433","avatar":"http://upload.jianshu.io/users/upload_avatars/1661508/7e3074c0cb15.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 17:13:05"},{"author":"大肚子猫","read":"2966","slug":"474574d36219","title":"注意10个小细节，做个有教养的人","fav":"144","img":"http://upload-images.jianshu.io/upload_images/2053886-599b89cf88048cc0.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"26","avatar":"http://upload.jianshu.io/users/upload_avatars/2053886/3c7c0007bb6d.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 20:07:44"},{"author":"superpoo好不好玩","read":"4021","slug":"b4d3f5f0a148","title":"该是你的，为什么不去争？","fav":"198","img":"http://upload-images.jianshu.io/upload_images/1218896-8f4b9c4f94e74bc2.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"55","avatar":"http://upload.jianshu.io/users/upload_avatars/1218896/6aaf992258cf.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 11:35:12"},{"author":"枫小梦","read":"2218","slug":"e993baf6157e","title":"书看了就忘？其实是你不够认真","fav":"136","img":"http://upload-images.jianshu.io/upload_images/1122063-84283820bf94f14e.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"25","avatar":"http://upload.jianshu.io/users/upload_avatars/1122063/014a603fb510.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 17:28:20"},{"author":"阿春牧羊犬","read":"9622","slug":"9a7a80988b37","title":"找个愿意吃你剩饭的男人","fav":"292","img":"http://upload-images.jianshu.io/upload_images/1310352-9a6c815699b13335.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"280","avatar":"http://upload.jianshu.io/users/upload_avatars/1310352/61c731438355.JPG?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 13:23:56"},{"author":"猪小闹","read":"880","slug":"892240ab573e","title":"为什么别人能谈笑风生，你却是冷场王？","fav":"34","img":"http://upload-images.jianshu.io/upload_images/1354061-d9679a297517f201.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"12","avatar":"http://upload.jianshu.io/users/upload_avatars/1354061/8220d93b17b9.jpeg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 20:36:29"},{"author":"简书日报","read":"7145","slug":"0ecdf7298833","title":"简书晚报160529\u2014\u2014《文章如何写出笔力？》","fav":"224","img":"http://upload-images.jianshu.io/upload_images/568470-412b5f481a605be8.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"10","avatar":"http://upload.jianshu.io/users/upload_avatars/568470/00a49b0d0567.jpeg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-29 10:40:33"},{"author":"江寒园","read":"9159","slug":"0f360583e4e6","title":"文章如何写出笔力？","fav":"845","img":"http://upload-images.jianshu.io/upload_images/193758-6785e0ed57dc6d35.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"116","avatar":"http://upload.jianshu.io/users/upload_avatars/193758/fae836c93cd8?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 16:40:00"},{"author":"袁小圆儿","read":"697","slug":"db986b6ac158","title":"高效学习的方法\u2014\u2014从个性出发，告别埋头苦读","fav":"42","img":"http://upload.jianshu.io/users/upload_avatars/1416219/e2c859d13461.jpg?imageMogr/thumbnail/200x200/quality/100","comment":"9","avatar":"http://upload.jianshu.io/users/upload_avatars/1416219/e2c859d13461.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 19:48:01"},{"author":"韩大爷的杂货铺","read":"9278","slug":"a32030c25ef5","title":"时间教会我们的6件事","fav":"484","img":"http://upload-images.jianshu.io/upload_images/1767483-c4833e795b3f5980.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"220","avatar":"http://upload.jianshu.io/users/upload_avatars/1767483/1c03b1e7e325.jpeg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 13:20:06"},{"author":"简书活动精选","read":"9479","slug":"82a1f01535cc","title":"征集帖：给闺蜜的信 ｜六行书","fav":"288","img":"http://upload-images.jianshu.io/upload_images/654237-01a7932e74dc5d3b.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"778","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-27 15:02:03"},{"author":"花落颜颜","read":"7839","slug":"8e1647e401bb","title":"没错呀，我就是要拉黑你，还要经过你同意吗？","fav":"220","img":"http://upload-images.jianshu.io/upload_images/1827809-87396cb344299d41.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"262","avatar":"http://upload.jianshu.io/users/upload_avatars/1827809/25fdfd3bf258.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 13:02:45"},{"author":"简书播客","read":"1333","slug":"f15ce13c2c16","title":"简书播客#第十一期 有些人的一辈子 一天就过完了","fav":"23","img":"http://upload-images.jianshu.io/upload_images/1374926-1fc05bc2c98f35eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"5","avatar":"http://upload.jianshu.io/users/upload_avatars/1835826/fcfb7cdd47bd.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-29 06:40:05"},{"author":"树獭先生","read":"5120","slug":"873f1ed7c54d","title":"怎样读书，才能转化为你的精神财富","fav":"296","img":"http://upload-images.jianshu.io/upload_images/1890381-9f881e556922c895.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"92","avatar":"http://upload.jianshu.io/users/upload_avatars/1890381/9d088eb49e94.jpeg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 13:49:31"},{"author":"简书","read":"5897","slug":"50f4d2f1b47c","title":"给简书找BUG赢好礼16.05.20\u2014\u2014简书android 1.10.8公测","fav":"29","img":"http://upload-images.jianshu.io/upload_images/259-2084aef093aad223.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"114","avatar":"http://upload.jianshu.io/users/upload_avatars/259/38c1de65b408.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-20 21:16:05"},{"author":"共晴雨","read":"2042","slug":"f619c2a532d7","title":"你的文字值多少钱（六年的经验和总结）","fav":"171","img":"http://upload-images.jianshu.io/upload_images/1557406-341d3ef671b2bfd1.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"92","avatar":"http://upload.jianshu.io/users/upload_avatars/1557406/05f71792021f?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 15:18:24"},{"author":"简书活动精选","read":"1161","slug":"0114f0d253a7","title":"【特别策划】简书六一节活动召集：手工童话夜","fav":"22","img":"http://upload-images.jianshu.io/upload_images/75112-12f19080d6d108c9.JPG?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"3","avatar":"http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-29 11:01:53"},{"author":"水若海澜_王澜","read":"915","slug":"47b9d53b130d","title":"成功没有捷径\u201490岁老人创造年利润7000万的传奇","fav":"40","img":"http://upload-images.jianshu.io/upload_images/1875031-eaac68c11011b922.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"19","avatar":"http://upload.jianshu.io/users/upload_avatars/1875031/ea6064af1226.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 17:52:05"},{"author":"简书","read":"20135","slug":"4f1b7d4ef94e","title":"关于调整简书新浪联合认证标准的公告","fav":"274","img":"http://upload-images.jianshu.io/upload_images/259-5bab4699b76e4381.png?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300","comment":"217","avatar":"http://upload.jianshu.io/users/upload_avatars/259/38c1de65b408.jpg?imageMogr/thumbnail/90x90/quality/100","date":"2015-03-05 10:53:23"},{"author":"乘风律次方","read":"980","slug":"5c37a890bf8e","title":"6个问题后，你也是高效阅读者","fav":"58","img":"http://upload.jianshu.io/users/upload_avatars/2011165/374fdd3b96bd.jpeg?imageMogr/thumbnail/200x200/quality/100","comment":"8","avatar":"http://upload.jianshu.io/users/upload_avatars/2011165/374fdd3b96bd.jpeg?imageMogr/thumbnail/90x90/quality/100","date":"2016-05-28 17:16:12"}]
+     * ids : ["4161556","4163685","4152043","3917977","4160443","4164289","4169527","4162052","4163189","4158266","4143202","4158323","4032403","4160679","4053565","4161375","4169918","4162763","751763","4161393"]
+     * page : 2
      */
 
     private int count;
+    private String page;
     private List<String> banner;
     /**
-     * title : 【简书•换书会】北京第三期换书会纪实：我有一本书，足以慰风尘。
-     * comment : 12
-     * read : 1401
-     * img : http://upload-images.jianshu.io/upload_images/1627319-18c0a839ccb97cb0.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300
-     * author : 简书活动精选
-     * date : 2016-05-18 17:50:55
-     * avatar : http://upload.jianshu.io/users/upload_avatars/654237/bd019828d682.jpg?imageMogr/thumbnail/90x90/quality/100
-     * fav : 20
-     * slug : d5f7bd05411f
+     * author : Sunflower_girl
+     * read : 7348
+     * slug : f076a5caabc7
+     * title : 大学室友教会我的那些事
+     * fav : 356
+     * img : http://upload-images.jianshu.io/upload_images/1661508-a8cd574b1de121cb.jpg?imageMogr2/auto-orient/strip%7CimageView2/1/w/300/h/300
+     * comment : 433
+     * avatar : http://upload.jianshu.io/users/upload_avatars/1661508/7e3074c0cb15.jpg?imageMogr/thumbnail/90x90/quality/100
+     * date : 2016-05-28 17:13:05
      */
 
     private List<ResultsBean> results;
+    private List<String> ids;
 
     public int getCount() {
         return count;
@@ -35,6 +40,14 @@ public class ArticleList {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
     }
 
     public List<String> getBanner() {
@@ -53,31 +66,31 @@ public class ArticleList {
         this.results = results;
     }
 
+    public List<String> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<String> ids) {
+        this.ids = ids;
+    }
+
     public static class ResultsBean {
-        private String title;
-        private String comment;
-        private String read;
-        private String img;
         private String author;
-        private String date;
-        private String avatar;
-        private String fav;
+        private String read;
         private String slug;
+        private String title;
+        private String fav;
+        private String img;
+        private String comment;
+        private String avatar;
+        private String date;
 
-        public String getTitle() {
-            return title;
+        public String getAuthor() {
+            return author;
         }
 
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getComment() {
-            return comment;
-        }
-
-        public void setComment(String comment) {
-            this.comment = comment;
+        public void setAuthor(String author) {
+            this.author = author;
         }
 
         public String getRead() {
@@ -88,36 +101,20 @@ public class ArticleList {
             this.read = read;
         }
 
-        public String getImg() {
-            return img;
+        public String getSlug() {
+            return slug;
         }
 
-        public void setImg(String img) {
-            this.img = img;
+        public void setSlug(String slug) {
+            this.slug = slug;
         }
 
-        public String getAuthor() {
-            return author;
+        public String getTitle() {
+            return title;
         }
 
-        public void setAuthor(String author) {
-            this.author = author;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-
-        public String getAvatar() {
-            return avatar;
-        }
-
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
         public String getFav() {
@@ -128,12 +125,36 @@ public class ArticleList {
             this.fav = fav;
         }
 
-        public String getSlug() {
-            return slug;
+        public String getImg() {
+            return img;
         }
 
-        public void setSlug(String slug) {
-            this.slug = slug;
+        public void setImg(String img) {
+            this.img = img;
+        }
+
+        public String getComment() {
+            return comment;
+        }
+
+        public void setComment(String comment) {
+            this.comment = comment;
+        }
+
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
         }
     }
 }

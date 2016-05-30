@@ -13,6 +13,7 @@ import com.tongming.jianshu.util.LogUtil;
 import com.tongming.jianshu.util.URLUtil;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -27,6 +28,8 @@ import okhttp3.Response;
 public class ArticlePresenterCompl implements IArticlePresneter {
     private IArticleView mArticleView;
     private Handler mHandler;
+    OkHttpClient client = BaseApplication.client;
+    final Gson gson = BaseApplication.gson;
 
     public ArticlePresenterCompl(IArticleView mArticleView) {
         this.mArticleView = mArticleView;
@@ -36,8 +39,6 @@ public class ArticlePresenterCompl implements IArticlePresneter {
 
     @Override
     public void getArticleList(String cid) {
-        OkHttpClient client = BaseApplication.client;
-        final Gson gson = BaseApplication.gson;
         Request request = new Request.Builder().url(URLUtil.CATEGORY + cid).build();
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -47,6 +48,7 @@ public class ArticlePresenterCompl implements IArticlePresneter {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                //LogUtil.d("Article",response.body().string());
                 final ArticleList list = gson.fromJson(response.body().string(), new TypeToken<ArticleList>() {
                 }.getType());
                 mHandler.post(new Runnable() {
@@ -54,6 +56,36 @@ public class ArticlePresenterCompl implements IArticlePresneter {
                     public void run() {
                         mArticleView.onGetArticle(list);
                         LogUtil.d(ArticleDetailActivity.class.getSimpleName(), "获取文章数据成功");
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public void loadMore(List<String> ids, int type) {
+        Request request = null;
+        if(type==0){
+            request = new Request.Builder().url(URLUtil.getMore(ids)).build();
+        }else {
+            request = new Request.Builder().url(URLUtil.LOAD_NORMAL+ids.get(0)).build();
+        }
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final ArticleList list = gson.fromJson(response.body().string(),
+                        new TypeToken<ArticleList>() {
+                        }.getType());
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        LogUtil.d("Article", "上拉加载数据成功");
+                        mArticleView.onLoadMore(list);
                     }
                 });
             }

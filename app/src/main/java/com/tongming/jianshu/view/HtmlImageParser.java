@@ -17,12 +17,14 @@ import com.tongming.jianshu.base.BaseApplication;
 public class HtmlImageParser implements Html.ImageGetter {
     private Context context;
     private TextView textView;
-    int width;
+    private int width;
+    private int height;
 
     public HtmlImageParser(Context context, TextView textView) {
         this.context = context;
         this.textView = textView;
-        width = context.getResources().getDisplayMetrics().widthPixels;
+        width = context.getResources().getDisplayMetrics().widthPixels; //获取屏幕的宽
+        height = context.getResources().getDisplayMetrics().heightPixels;
     }
 
 
@@ -33,9 +35,16 @@ public class HtmlImageParser implements Html.ImageGetter {
                 new SimpleImageLoadingListener() {
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                        float scaleWidth = ((float) width) / loadedImage.getWidth();
+                        float scaleWidth = ((float) width) / loadedImage.getWidth();//缩放比例
+                        float scaleHeight = ((float) height) / loadedImage.getHeight();
                         Matrix matrix = new Matrix();
                         matrix.postScale(scaleWidth, scaleWidth);
+
+                        /*ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                        loadedImage.comress(Bitmap.CompressFormat.JPEG, 50, bos);
+                        String base = Basep64.encodeToString(bos.toByteArray(), Base64.DEFAULT);
+                        byte[] bytes = Base64.decode(base, 0);
+                        loadedImage = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);*/
                         loadedImage = Bitmap.createBitmap(loadedImage, 0, 0, loadedImage.getWidth(), loadedImage.getHeight(), matrix, true);
                         urlDrawable.bitmap = loadedImage;
                         urlDrawable.setBounds(0, 0, loadedImage.getWidth(), loadedImage.getHeight());

@@ -10,6 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -24,6 +27,11 @@ import com.tongming.jianshu.bean.ArticleList;
 import com.tongming.jianshu.presenter.ArticlePresenterCompl;
 import com.tongming.jianshu.util.LogUtil;
 import com.tongming.jianshu.util.RecyclerViewUtil;
+import com.tongming.jianshu.util.ToastUtil;
+import com.tongming.jianshu.view.RecyclerViewDivider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -32,7 +40,7 @@ import butterknife.BindView;
  */
 public class ArticleFragment extends BaseFragment implements IArticleView {
 
-    private static final String TAG = "HOT";
+    private static final String TAG = "Article";
     private boolean flag = false;
 
     @BindView(R.id.hot_swipe)
@@ -43,6 +51,13 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     RecyclerView recyclerView;
     private ArticleRecylerViewAdapter adapter;
     private int type;
+    private ArticlePresenterCompl compl;
+    private List<ArticleList.ResultsBean> articleList;
+    private LinearLayoutManager layoutManager;
+    private HeaderAndFooterRecyclerViewAdapter mAdapter;
+    private LinearLayout footer;
+    private TextView textView;
+    private SeekBar seekBar;
 
     public static ArticleFragment newInstance(int type) {
         ArticleFragment articleFragment = new ArticleFragment();
@@ -54,11 +69,22 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
 
     @Override
     protected void initViews() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        /*recyclerView.addItemDecoration(new RecyclerViewDivider(
-                getActivity(), LinearLayoutManager.VERTICAL, 5, getResources().getColor(R.color.divide_gray)
-        ));*/
+        recyclerView.addItemDecoration(new RecyclerViewDivider(
+                getActivity(), LinearLayoutManager.VERTICAL, 3, getResources().getColor(R.color.divide_gray)
+        ));
+        refreshLayout.setColorSchemeResources(new int[]{R.color.colorPrimary});
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                type = getArguments().getInt("type");
+                compl.getArticleList(type + "");
+            }
+        });
+        footer = (LinearLayout) View.inflate(getActivity(), R.layout.item_footer, null);
+
     }
 
     @Override
@@ -70,6 +96,7 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     protected void afterCreate(Bundle saveInstanceState) {
         /*isPrepared = true;
         lazyLoad();*/
+        articleList = new ArrayList<>();
     }
 
     @Override
@@ -84,38 +111,73 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
                     refreshLayout.setRefreshing(true);
                 }
             });
-            ArticlePresenterCompl compl = new ArticlePresenterCompl(this);
+            compl = new ArticlePresenterCompl(this);
             type = getArguments().getInt("type");
-            LogUtil.d(TAG, type + "");
             compl.getArticleList(type + "");
             flag = true;
         }
     }
 
     @Override
-    public void onGetArticle(ArticleList list) {
+    public void onGetArticle(final ArticleList list) {
+        if (articleList.size() == 0) {
+            articleList.addAll(list.getResults());
+        } else {
+            articleList.clear();
+            articleList.addAll(list.getResults());
+        }
         refreshLayout.post(new Runnable() {
             @Override
             public void run() {
                 refreshLayout.setRefreshing(false);
             }
         });
-
-        adapter = new ArticleRecylerViewAdapter(getActivity(), list);
-        //点击文章的事件监听
-        adapter.setOnItemClickListener(new ArticleRecylerViewAdapter.onRecyclerViewItemClickListener() {
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onItemClick(View view, String slug) {
-                Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                intent.putExtra("slug", slug);
-                startActivity(intent);
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE
+                        && layoutManager.findLastCompletelyVisibleItemPosition() + 1 == mAdapter.getItemCount()) {
+                   /* if (textView == null && seekBar == null) {
+                        textView = new TextView(getActivity());
+                        seekBar = new SeekBar(getActivity());
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
+                        );
+                        params.weight = 1;
+                        textView.setText("正在加载");
+                        textView.setTextSize(16);
+                        textView.setLayoutParams(params);
+                        footer.addView(textView);
+                        seekBar.setLayoutParams(params);
+
+                        footer.addView(seekBar);
+                    }*/
+                    //滑动到底部时触发加载更多数据的操作
+                    compl.loadMore(list.getIds(),type);
+                }
             }
         });
+
+        if (adapter == null) {
+            adapter = new ArticleRecylerViewAdapter(getActivity(), list.getResults());
+            //点击文章的事件监听
+            adapter.setOnItemClickListener(new ArticleRecylerViewAdapter.onRecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(View view, String slug) {
+                    Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                    intent.putExtra("slug", slug);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            adapter.notifyDataSetChanged();
+            ToastUtil.showToast(getActivity(), "刷新完成");
+        }
+        mAdapter = new HeaderAndFooterRecyclerViewAdapter(adapter);
+        recyclerView.setAdapter(mAdapter);
         if (type == 0) {
             //添加header
-            HeaderAndFooterRecyclerViewAdapter mAdapter = new HeaderAndFooterRecyclerViewAdapter(adapter);
-            recyclerView.setAdapter(mAdapter);
-
             ConvenientBanner banner = (ConvenientBanner) View.inflate(getActivity(), R.layout.item_banner, null);
             banner.setPages(new CBViewHolderCreator() {
                 @Override
@@ -145,7 +207,21 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
             RecyclerViewUtil.setHeaderView(recyclerView, banner);
         }
         if (type >= 1 && type <= 8) {
-            recyclerView.setAdapter(adapter);
+//            recyclerView.setAdapter(adapter);
         }
+        RecyclerViewUtil.setFooterView(recyclerView, footer);
     }
+
+    //下拉加载,数据获取完成之后的操作
+    @Override
+    public void onLoadMore(ArticleList list) {
+        List<ArticleList.ResultsBean> resultsBeanList = adapter.getList();
+        resultsBeanList.clear();
+        articleList.addAll(list.getResults());
+        resultsBeanList.addAll(articleList);
+        adapter.notifyDataSetChanged();
+        LogUtil.d(TAG,adapter.getList().size()+"");
+    }
+
+
 }

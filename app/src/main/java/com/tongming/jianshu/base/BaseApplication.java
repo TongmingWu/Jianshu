@@ -4,8 +4,10 @@ import android.app.Application;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -30,7 +32,13 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(this)
+                .threadPoolSize(3)
+                .threadPriority(Thread.NORM_PRIORITY-2)
+                .denyCacheImageMultipleSizesInMemory()
+                .memoryCache(new WeakMemoryCache())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .build();
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(configuration);
         File cacheFile = new File(getCacheDir().getPath());
