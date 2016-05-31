@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -84,7 +85,11 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
             }
         });
         footer = (LinearLayout) View.inflate(getActivity(), R.layout.item_footer, null);
-
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.gravity = Gravity.CENTER;
+        footer.setLayoutParams(params);
     }
 
     @Override
@@ -138,21 +143,7 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
                         && layoutManager.findLastCompletelyVisibleItemPosition() + 1 == mAdapter.getItemCount()) {
-                   /* if (textView == null && seekBar == null) {
-                        textView = new TextView(getActivity());
-                        seekBar = new SeekBar(getActivity());
-                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
-                        );
-                        params.weight = 1;
-                        textView.setText("正在加载");
-                        textView.setTextSize(16);
-                        textView.setLayoutParams(params);
-                        footer.addView(textView);
-                        seekBar.setLayoutParams(params);
 
-                        footer.addView(seekBar);
-                    }*/
                     //滑动到底部时触发加载更多数据的操作
                     compl.loadMore(list.getIds(),type);
                 }
