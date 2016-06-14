@@ -1,10 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="提醒"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:cardElevation="1dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="消息"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="评论"
+        app:view_src="@drawable/image_talk" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="简信"
+        app:view_src="@drawable/image_message" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="投稿请求"
+        app:view_src="@drawable/image_ask" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="喜欢"
+        app:view_src="@drawable/image_like" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="关注"
+        app:view_src="@drawable/image_guanzhu" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="打赏"
+        app:view_src="@drawable/image_reward" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="其他"
+        app:view_src="@drawable/image_other" />
 
 </LinearLayout>

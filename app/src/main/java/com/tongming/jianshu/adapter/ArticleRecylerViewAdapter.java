@@ -38,7 +38,7 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
     }
 
 
-    public List<ArticleList.ResultsBean> getList(){
+    public List<ArticleList.ResultsBean> getList() {
         return this.list;
     }
 
@@ -53,37 +53,39 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         if (holder instanceof CusViewHolder) {
-            if (holder instanceof CusViewHolder) {
-                ArticleList.ResultsBean bean = list.get(position);
-                holder.itemView.setTag(bean.getSlug());
-                String time = bean.getDate().split(" ")[1];
-                final float scale = context.getResources().getDisplayMetrics().density;
-                int width = (int) (220 * scale + 0.5f);
-                int height = (int) (110 * scale + 0.5f);
-
-                if (bean.getImg() != null) {
+            ArticleList.ResultsBean bean = list.get(position);
+            holder.itemView.setTag(bean.getSlug());
+            String time = bean.getDate().split(" ")[1];
+            final float scale = context.getResources().getDisplayMetrics().density;
+            int width = (int) (220 * scale + 0.5f);
+            int height = (int) (110 * scale + 0.5f);
+            ImageView imageView = new ImageView(context);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                    (int) (90 * scale + 0.5f), (int) (90 * scale + 0.5f));
+            params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            params.addRule(RelativeLayout.CENTER_VERTICAL);
+            imageView.setLayoutParams(params);
+            ((CusViewHolder) holder).relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(width,
+                    height));
+            if (bean.getImg() != null) {
 //                    LogUtil.d(ArticleRecylerViewAdapter.class.getSimpleName(), "position = " + position + " img = " + bean.getImg());
-                    ImageView imageView = new ImageView(context);
-                    imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                            (int) (90 * scale + 0.5f), (int) (90 * scale + 0.5f));
-                    params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-                    params.addRule(RelativeLayout.CENTER_VERTICAL);
-                    imageView.setLayoutParams(params);
-                    ((CusViewHolder) holder).relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(width,
-                            height));
-                    Glide.with(context).load(bean.getImg()).into(imageView);
-                    ((CusViewHolder) holder).root.addView(imageView);
-                } else {
-                    //LogUtil.d(ArticleRecylerViewAdapter.class.getSimpleName(), "position = " + position + " img = " + bean.getImg());
-                }
-                Glide.with(context).load(bean.getAvatar()).transform(new GlideGircleTransform(context)).into(((CusViewHolder) holder).avatar);
-                ((CusViewHolder) holder).author.setText(bean.getAuthor());
-                ((CusViewHolder) holder).created.setText(time);
-                ((CusViewHolder) holder).desc.setText(bean.getTitle());
-                ((CusViewHolder) holder).count.setText(bean.getRead()
-                        + "次阅读 · " + bean.getComment() + "评论 · " + bean.getFav() + "喜欢");
+                Glide.with(context).load(bean.getImg()).into(imageView);
+            } else {
+                //LogUtil.d(ArticleRecylerViewAdapter.class.getSimpleName(), "position = " + position + " img = " + bean.getImg());
+                Glide.with(context).load(bean.getAvatar()).into(imageView);
             }
+            ((CusViewHolder) holder).root.addView(imageView);
+            Glide.with(context)
+                    .load(bean.getAvatar())
+                    .placeholder(R.drawable.tx_image_1)
+                    .transform(new GlideGircleTransform(context))
+                    .into(((CusViewHolder) holder).avatar);
+            ((CusViewHolder) holder).author.setText(bean.getAuthor());
+            ((CusViewHolder) holder).created.setText(time);
+            ((CusViewHolder) holder).desc.setText(bean.getTitle());
+            ((CusViewHolder) holder).count.setText(bean.getRead()
+                    + "次阅读 · " + bean.getComment() + "评论 · " + bean.getFav() + "喜欢");
         }
     }
 
@@ -106,9 +108,6 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
         return list.size();
     }
 
-    public static interface onRecyclerViewItemClickListener {
-        void onItemClick(View view, String slug);
-    }
 
     class CusViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.avatar)

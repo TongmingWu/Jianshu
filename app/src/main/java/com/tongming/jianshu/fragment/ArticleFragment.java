@@ -23,6 +23,7 @@ import com.tongming.jianshu.R;
 import com.tongming.jianshu.activity.ArticleDetailActivity;
 import com.tongming.jianshu.adapter.ArticleRecylerViewAdapter;
 import com.tongming.jianshu.adapter.HeaderAndFooterRecyclerViewAdapter;
+import com.tongming.jianshu.adapter.onRecyclerViewItemClickListener;
 import com.tongming.jianshu.base.BaseFragment;
 import com.tongming.jianshu.bean.ArticleList;
 import com.tongming.jianshu.presenter.ArticlePresenterCompl;
@@ -153,7 +154,7 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
         if (adapter == null) {
             adapter = new ArticleRecylerViewAdapter(getActivity(), list.getResults());
             //点击文章的事件监听
-            adapter.setOnItemClickListener(new ArticleRecylerViewAdapter.onRecyclerViewItemClickListener() {
+            adapter.setOnItemClickListener(new onRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(View view, String slug) {
                     Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);

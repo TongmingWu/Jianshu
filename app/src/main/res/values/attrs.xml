@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LineOption">
+        <attr name="view_desc" format="string" />
+        <attr name="view_src" format="reference" />
+        <attr name="view_num" format="string" />
+    </declare-styleable>
+</resources>

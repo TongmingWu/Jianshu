@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="attention"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/bar_attention" />
+
+    <!--<android.support.v7.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:iconifiedByDefault="false"
+        app:queryHint="搜索:关注用户" />-->
+
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="简友动态"
+        app:view_src="@drawable/image_jianyouquan" />
+    <com.tongming.jianshu.view.LineOption
+        app:view_desc="一键查看全部更新关注"
+        app:view_src="@drawable/image_all_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

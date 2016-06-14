@@ -8,7 +8,7 @@ import java.util.List;
 public class URLUtil {
     //    public static String SERVER = "http://192.168.191.1:5000/";
 //    public static String SERVER = "http://10.12.243.252:5000/";
-    public static String SERVER = "http://138.128.194.103:5000/";
+    public static String SERVER = "http://45.78.25.201:5000/";
     //获取其他类别的文章
     public static String CATEGORY = SERVER + "article/";
     //获取首页热门的文章
@@ -25,6 +25,10 @@ public class URLUtil {
     public static String COMMENT = SERVER + "comment/";
     //加载更多文章
     public static String MORE = SERVER + "more/hot/";
+    //获取专题信息
+    public static String COLLECTION = SERVER + "collections/";
+    //获取专题详细信息
+    public static String COLLECTION_DETAIL = SERVER + "collection/";
 
     public static String getMore(List<String> list) {
         for (int i = 0; i < list.size(); i++) {
