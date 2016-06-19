@@ -8,7 +8,7 @@ import java.util.List;
 public class URLUtil {
     //    public static String SERVER = "http://192.168.191.1:5000/";
 //    public static String SERVER = "http://10.12.243.252:5000/";
-    public static String SERVER = "http://45.78.25.201:5000/";
+    public static String SERVER = "http://45.78.25.201/";
     //获取其他类别的文章
     public static String CATEGORY = SERVER + "article/";
     //获取首页热门的文章
@@ -38,4 +38,7 @@ public class URLUtil {
     }
 
     public static String LOAD_NORMAL = SERVER + "more/normal/";
+
+    //搜索
+    public static String SEARCH = SERVER + "search/";
 }

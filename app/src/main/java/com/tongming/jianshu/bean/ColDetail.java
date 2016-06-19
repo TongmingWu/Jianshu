@@ -51,7 +51,7 @@ public class ColDetail {
      * title : 5分钟就可Get的工作好习惯
      */
 
-    private List<ArticleListBean> article_list;
+    private List<Article> article_list;
 
     public String getFollow_num() {
         return follow_num;
@@ -109,11 +109,11 @@ public class ColDetail {
         this.followers = followers;
     }
 
-    public List<ArticleListBean> getArticle_list() {
+    public List<Article> getArticle_list() {
         return article_list;
     }
 
-    public void setArticle_list(List<ArticleListBean> article_list) {
+    public void setArticle_list(List<Article> article_list) {
         this.article_list = article_list;
     }
 
@@ -156,87 +156,4 @@ public class ColDetail {
         }
     }
 
-    public static class ArticleListBean {
-        private String slug;
-        private String comment;
-        private String author;
-        private String img;
-        private String read;
-        private String date;
-        private String fav;
-        private String avatar;
-        private String title;
-
-        public String getSlug() {
-            return slug;
-        }
-
-        public void setSlug(String slug) {
-            this.slug = slug;
-        }
-
-        public String getComment() {
-            return comment;
-        }
-
-        public void setComment(String comment) {
-            this.comment = comment;
-        }
-
-        public String getAuthor() {
-            return author;
-        }
-
-        public void setAuthor(String author) {
-            this.author = author;
-        }
-
-        public String getImg() {
-            return img;
-        }
-
-        public void setImg(String img) {
-            this.img = img;
-        }
-
-        public String getRead() {
-            return read;
-        }
-
-        public void setRead(String read) {
-            this.read = read;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-
-        public String getFav() {
-            return fav;
-        }
-
-        public void setFav(String fav) {
-            this.fav = fav;
-        }
-
-        public String getAvatar() {
-            return avatar;
-        }
-
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-    }
 }

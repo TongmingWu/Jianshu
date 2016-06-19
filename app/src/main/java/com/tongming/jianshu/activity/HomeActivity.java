@@ -1,5 +1,7 @@
 package com.tongming.jianshu.activity;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +9,8 @@ import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
@@ -22,13 +26,14 @@ import com.tongming.jianshu.util.ToastUtil;
 import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class HomeActivity extends BaseActivity {
 
+    private static final String TAG = HomeActivity.class.getSimpleName();
     @BindView(R.id.bnb)
     BottomNavigationBar navigationBar;
-
+    @BindView(R.id.rl_root)
+    RelativeLayout root;
 
     private boolean isExit;
 
@@ -38,6 +43,7 @@ public class HomeActivity extends BaseActivity {
     private TougaoFragment tougaoFragment;
     private RemindFragment remindFragment;
     private MineFragment mineFragment;
+    private SearchManager searchManager;
 
     private class MyHandler extends Handler {
         private final WeakReference<HomeActivity> mActivity;
@@ -58,8 +64,6 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
-
         setDefaultFragment();
     }
 
@@ -70,7 +74,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initViews() {
-
+        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         navigationBar.addItem(new BottomNavigationItem(R.drawable.cb_icon_discover_selected, "首页"))
                 .addItem(new BottomNavigationItem(R.drawable.cb_icon_guanzhu_normal, "关注"))
                 .addItem(new BottomNavigationItem(R.drawable.cb_icon_pen_normal, "投稿"))
@@ -148,6 +152,23 @@ public class HomeActivity extends BaseActivity {
 
             }
         });
+        searchManager.setOnCancelListener(new SearchManager.OnCancelListener() {
+            @Override
+            public void onCancel() {
+                if (root.getVisibility() == View.INVISIBLE) {
+                    root.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        searchManager.setOnDismissListener(new SearchManager.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                if (root.getVisibility() == View.INVISIBLE) {
+                    root.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
     private void hideTab(FragmentTransaction transaction) {
@@ -175,9 +196,16 @@ public class HomeActivity extends BaseActivity {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         homeFragment = new HomeFragment();
-        transaction.replace(R.id.rl_container, homeFragment,"homepage");
+        transaction.replace(R.id.rl_container, homeFragment, "homepage");
         transaction.commit();
     }
+
+    @Override
+    public boolean onSearchRequested() {
+        root.setVisibility(View.INVISIBLE);
+        return super.onSearchRequested();
+    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

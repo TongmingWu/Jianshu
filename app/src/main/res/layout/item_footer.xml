@@ -19,6 +19,7 @@
         android:layout_height="20dp"
         android:layout_marginLeft="5dp"
         android:layout_centerVertical="true"
+        android:indeterminateDrawable="@drawable/barcolor"
         android:indeterminate="false" />
 
 </LinearLayout>

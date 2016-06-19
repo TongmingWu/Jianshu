@@ -101,7 +101,6 @@ public class HeaderAndFooterRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     }
 
     public void addFooterView(View footer) {
-
         if (footer == null) {
             throw new RuntimeException("footer is null");
         }

@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#d96f5d</color>
     <color name="colorAccent">#FF4081</color>
     <color name="divide_gray">@android:color/white</color>
+    <color name="button_green">#49bf37</color>
+    <color name="bg_white">#fafafa</color>
 </resources>

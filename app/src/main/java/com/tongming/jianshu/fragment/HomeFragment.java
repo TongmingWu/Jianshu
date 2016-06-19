@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.tongming.jianshu.R;
 import com.tongming.jianshu.base.BaseFragment;
@@ -16,6 +18,7 @@ import butterknife.BindView;
  */
 public class HomeFragment extends BaseFragment {
 
+    private static final String TAG = HomeFragment.class.getSimpleName();
     @BindView(R.id.ib_contribute)
     ImageButton contribute;
 
@@ -24,6 +27,9 @@ public class HomeFragment extends BaseFragment {
 
     @BindView(R.id.main_tab)
     TabLayout tabLayout;
+
+    @BindView(R.id.ll_root)
+    LinearLayout root;
 
 
     private String[] TAB = {"热门", "新上榜", "日报", "七日热门", "三十日热门", "市集", "有奖活动", "简书出版", "简书博客"};
@@ -78,13 +84,20 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
+        //搜索框
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onSearchRequested();
+            }
+        });
     }
 
     private void setDefaultFragment() {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         articleTabFragment = new ArticleTabFragment();
-        transaction.replace(R.id.rl_article, articleTabFragment,"article");
+        transaction.replace(R.id.rl_article, articleTabFragment, "article");
         transaction.commit();
     }
 

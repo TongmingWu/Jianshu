@@ -31,7 +31,7 @@ public class ArticleList {
      * date : 2016-05-28 17:13:05
      */
 
-    private List<ResultsBean> results;
+    private List<Article> results;
     private List<String> ids;
 
     public int getCount() {
@@ -58,11 +58,11 @@ public class ArticleList {
         this.banner = banner;
     }
 
-    public List<ResultsBean> getResults() {
+    public List<Article> getResults() {
         return results;
     }
 
-    public void setResults(List<ResultsBean> results) {
+    public void setResults(List<Article> results) {
         this.results = results;
     }
 
@@ -74,87 +74,5 @@ public class ArticleList {
         this.ids = ids;
     }
 
-    public static class ResultsBean {
-        private String author;
-        private String read;
-        private String slug;
-        private String title;
-        private String fav;
-        private String img;
-        private String comment;
-        private String avatar;
-        private String date;
 
-        public String getAuthor() {
-            return author;
-        }
-
-        public void setAuthor(String author) {
-            this.author = author;
-        }
-
-        public String getRead() {
-            return read;
-        }
-
-        public void setRead(String read) {
-            this.read = read;
-        }
-
-        public String getSlug() {
-            return slug;
-        }
-
-        public void setSlug(String slug) {
-            this.slug = slug;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getFav() {
-            return fav;
-        }
-
-        public void setFav(String fav) {
-            this.fav = fav;
-        }
-
-        public String getImg() {
-            return img;
-        }
-
-        public void setImg(String img) {
-            this.img = img;
-        }
-
-        public String getComment() {
-            return comment;
-        }
-
-        public void setComment(String comment) {
-            this.comment = comment;
-        }
-
-        public String getAvatar() {
-            return avatar;
-        }
-
-        public void setAvatar(String avatar) {
-            this.avatar = avatar;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public void setDate(String date) {
-            this.date = date;
-        }
-    }
 }

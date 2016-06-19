@@ -8,8 +8,10 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -25,6 +27,7 @@ import com.tongming.jianshu.adapter.ArticleRecylerViewAdapter;
 import com.tongming.jianshu.adapter.HeaderAndFooterRecyclerViewAdapter;
 import com.tongming.jianshu.adapter.onRecyclerViewItemClickListener;
 import com.tongming.jianshu.base.BaseFragment;
+import com.tongming.jianshu.bean.Article;
 import com.tongming.jianshu.bean.ArticleList;
 import com.tongming.jianshu.presenter.ArticlePresenterCompl;
 import com.tongming.jianshu.util.LogUtil;
@@ -54,12 +57,13 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     private ArticleRecylerViewAdapter adapter;
     private int type;
     private ArticlePresenterCompl compl;
-    private List<ArticleList.ResultsBean> articleList;
+    private List<Article> articleList;
     private LinearLayoutManager layoutManager;
     private HeaderAndFooterRecyclerViewAdapter mAdapter;
     private LinearLayout footer;
     private TextView textView;
     private SeekBar seekBar;
+    private Display display;
 
     public static ArticleFragment newInstance(int type) {
         ArticleFragment articleFragment = new ArticleFragment();
@@ -87,9 +91,12 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
         });
         footer = (LinearLayout) View.inflate(getActivity(), R.layout.item_footer, null);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
         );
-        params.gravity = Gravity.CENTER;
+        WindowManager manager = getActivity().getWindowManager();
+        DisplayMetrics metrics = new DisplayMetrics();
+        manager.getDefaultDisplay().getMetrics(metrics);
+        params.leftMargin = metrics.widthPixels / 2 - 79;  //footer的宽度为158
         footer.setLayoutParams(params);
     }
 
@@ -146,7 +153,7 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
                         && layoutManager.findLastCompletelyVisibleItemPosition() + 1 == mAdapter.getItemCount()) {
 
                     //滑动到底部时触发加载更多数据的操作
-                    compl.loadMore(list.getIds(),type);
+                    compl.loadMore(list.getIds(), type);
                 }
             }
         });
@@ -207,12 +214,12 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     //下拉加载,数据获取完成之后的操作
     @Override
     public void onLoadMore(ArticleList list) {
-        List<ArticleList.ResultsBean> resultsBeanList = adapter.getList();
+        List<Article> resultsBeanList = adapter.getList();
         resultsBeanList.clear();
         articleList.addAll(list.getResults());
         resultsBeanList.addAll(articleList);
         adapter.notifyDataSetChanged();
-        LogUtil.d(TAG,adapter.getList().size()+"");
+        LogUtil.d(TAG, adapter.getList().size() + "");
     }
 
 

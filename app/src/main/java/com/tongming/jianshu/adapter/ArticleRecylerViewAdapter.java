@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tongming.jianshu.R;
-import com.tongming.jianshu.bean.ArticleList;
+import com.tongming.jianshu.bean.Article;
 import com.tongming.jianshu.view.GlideGircleTransform;
 
 import java.util.List;
@@ -27,18 +27,18 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<ArticleList.ResultsBean> list;
+    private List<Article> list;
 
     private onRecyclerViewItemClickListener itemClickListener = null;
 
-    public ArticleRecylerViewAdapter(Context context, List<ArticleList.ResultsBean> list) {
+    public ArticleRecylerViewAdapter(Context context, List<Article> list) {
         this.context = context;
         this.list = list;
         layoutInflater = LayoutInflater.from(context);
     }
 
 
-    public List<ArticleList.ResultsBean> getList() {
+    public List<Article> getList() {
         return this.list;
     }
 
@@ -53,7 +53,7 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         if (holder instanceof CusViewHolder) {
-            ArticleList.ResultsBean bean = list.get(position);
+            Article bean = list.get(position);
             holder.itemView.setTag(bean.getSlug());
             String time = bean.getDate().split(" ")[1];
             final float scale = context.getResources().getDisplayMetrics().density;

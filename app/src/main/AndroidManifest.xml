@@ -15,11 +15,26 @@
         <activity
             android:name=".activity.HomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value="com.tongming.jianshu.activity.SearchActivity" />
+        </activity>
+        <activity
+            android:name=".activity.SearchActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name=".activity.ArticleDetailActivity"
@@ -27,6 +42,15 @@
         <activity
             android:name=".activity.TopicDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.RelevantActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.UserActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <provider
+            android:name=".provider.SearchSuggestionProvider"
+            android:authorities="com.tongming.jianshu.provider.SearchSuggestionProvider" />
     </application>
 
 </manifest>
