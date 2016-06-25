@@ -47,7 +47,7 @@ public class ArticlePresenterCompl implements IArticlePresneter {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, final Response response) throws IOException {
                 //LogUtil.d("Article",response.body().string());
                 final ArticleList list = gson.fromJson(response.body().string(), new TypeToken<ArticleList>() {
                 }.getType());
@@ -55,6 +55,7 @@ public class ArticlePresenterCompl implements IArticlePresneter {
                     @Override
                     public void run() {
                         mArticleView.onGetArticle(list);
+                        response.body().close();
                         LogUtil.d(ArticleDetailActivity.class.getSimpleName(), "获取文章数据成功");
                     }
                 });

@@ -42,7 +42,7 @@ public class DetailPresenterCompl implements IDetailPresenter {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, final Response response) throws IOException {
                 final Detail detail = gson.fromJson(response.body().string(),
                         new TypeToken<Detail>() {
                         }.getType());
@@ -50,6 +50,7 @@ public class DetailPresenterCompl implements IDetailPresenter {
                     @Override
                     public void run() {
                         mDetailView.onGetDetail(detail);
+                        response.body().close();
                     }
                 });
             }

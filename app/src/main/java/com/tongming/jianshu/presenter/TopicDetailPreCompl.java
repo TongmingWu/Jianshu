@@ -41,16 +41,26 @@ public class TopicDetailPreCompl {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final ColDetail colDetail = gson.fromJson(response.body().string(),
-                        new TypeToken<ColDetail>() {
-                        }.getType());
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        topicDetailView.onGetDetail(colDetail);
-                    }
-                });
+            public void onResponse(Call call, final Response response) throws IOException {
+                if(response.code()==200){
+                    final ColDetail colDetail = gson.fromJson(response.body().string(),
+                            new TypeToken<ColDetail>() {
+                            }.getType());
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            topicDetailView.onGetDetail(colDetail);
+                            response.body().close();
+                        }
+                    });
+                }else {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            topicDetailView.onGetFailed(response.code());
+                        }
+                    });
+                }
             }
         });
     }

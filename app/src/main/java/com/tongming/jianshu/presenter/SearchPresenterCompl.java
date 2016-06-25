@@ -41,13 +41,14 @@ public class SearchPresenterCompl {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, final Response response) throws IOException {
                 final SearchResult result = gson.fromJson(response.body().string(),
                         new TypeToken<SearchResult>(){}.getType());
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         searchView.onSearch(result);
+                        response.body().close();
                     }
                 });
             }

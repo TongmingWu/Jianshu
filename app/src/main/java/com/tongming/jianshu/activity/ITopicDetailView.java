@@ -7,4 +7,5 @@ import com.tongming.jianshu.bean.ColDetail;
  */
 public interface ITopicDetailView {
     void onGetDetail(ColDetail colDetail);
+    void onGetFailed(int code);
 }

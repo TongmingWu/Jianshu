@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+
+    <TextView
+        android:id="@+id/tv_line"
+        android:layout_width="2px"
+        android:layout_height="100dp"
+        android:layout_marginLeft="18dp"
+        android:background="@android:color/darker_gray" />
+
+    <ImageView
+        android:id="@+id/iv_tl_avatar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/tx_image_1" />
+
+    <ImageView
+        android:id="@+id/tl_category"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_alignBottom="@id/iv_tl_avatar"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/dt_icon_talk" />
+
+
+    <TextView
+        android:id="@+id/tv_timeline_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@id/iv_tl_avatar"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        tools:text="作者评论了XX文章" />
+
+    <TextView
+        android:id="@+id/tv_timeline_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_timeline_action"
+        android:layout_below="@id/tv_timeline_action"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_timeline"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="#221211"
+        android:visibility="gone"
+        tools:text="动态的内容" />
+
+    <TextView
+        android:id="@+id/tv_timeline_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/tv_timeline_action"
+        android:layout_below="@id/tv_timeline_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        tools:text="06-25 18:00" />
+</RelativeLayout>

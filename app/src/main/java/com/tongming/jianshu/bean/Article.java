@@ -13,6 +13,15 @@ public class Article {
     private String comment;
     private String avatar;
     private String date;
+    private String author_slug;
+
+    public String getAuthor_slug() {
+        return author_slug;
+    }
+
+    public void setAuthor_slug(String author_slug) {
+        this.author_slug = author_slug;
+    }
 
     public String getAuthor() {
         return author;

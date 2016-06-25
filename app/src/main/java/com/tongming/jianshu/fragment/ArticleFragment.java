@@ -212,6 +212,7 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     }
 
     //下拉加载,数据获取完成之后的操作
+    //TODO : 加载更多的时候数据反了
     @Override
     public void onLoadMore(ArticleList list) {
         List<Article> resultsBeanList = adapter.getList();

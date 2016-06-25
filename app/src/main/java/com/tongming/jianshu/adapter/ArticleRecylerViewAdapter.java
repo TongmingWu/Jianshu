@@ -1,6 +1,7 @@
 package com.tongming.jianshu.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tongming.jianshu.R;
+import com.tongming.jianshu.activity.UserActivity;
 import com.tongming.jianshu.bean.Article;
 import com.tongming.jianshu.view.GlideGircleTransform;
 
@@ -51,9 +53,8 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
         if (holder instanceof CusViewHolder) {
-            Article bean = list.get(position);
+            final Article bean = list.get(position);
             holder.itemView.setTag(bean.getSlug());
             String time = bean.getDate().split(" ")[1];
             final float scale = context.getResources().getDisplayMetrics().density;
@@ -69,10 +70,8 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
             ((CusViewHolder) holder).relativeLayout.setLayoutParams(new RelativeLayout.LayoutParams(width,
                     height));
             if (bean.getImg() != null) {
-//                    LogUtil.d(ArticleRecylerViewAdapter.class.getSimpleName(), "position = " + position + " img = " + bean.getImg());
                 Glide.with(context).load(bean.getImg()).into(imageView);
             } else {
-                //LogUtil.d(ArticleRecylerViewAdapter.class.getSimpleName(), "position = " + position + " img = " + bean.getImg());
                 Glide.with(context).load(bean.getAvatar()).into(imageView);
             }
             ((CusViewHolder) holder).root.addView(imageView);
@@ -82,6 +81,22 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
                     .transform(new GlideGircleTransform(context))
                     .into(((CusViewHolder) holder).avatar);
             ((CusViewHolder) holder).author.setText(bean.getAuthor());
+            ((CusViewHolder) holder).author.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, UserActivity.class);
+                    intent.putExtra("slug",bean.getAuthor_slug());
+                    context.startActivity(intent);
+                }
+            });
+            ((CusViewHolder) holder).avatar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, UserActivity.class);
+                    intent.putExtra("slug",bean.getAuthor_slug());
+                    context.startActivity(intent);
+                }
+            });
             ((CusViewHolder) holder).created.setText(time);
             ((CusViewHolder) holder).desc.setText(bean.getTitle());
             ((CusViewHolder) holder).count.setText(bean.getRead()

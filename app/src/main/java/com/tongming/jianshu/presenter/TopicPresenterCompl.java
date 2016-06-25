@@ -42,7 +42,7 @@ public class TopicPresenterCompl implements ITopicPresenter {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(Call call, final Response response) throws IOException {
                 final Collection collection = gson.fromJson(response.body().string(),
                         new TypeToken<Collection>() {
                         }.getType());
@@ -50,6 +50,7 @@ public class TopicPresenterCompl implements ITopicPresenter {
                     @Override
                     public void run() {
                         topicView.onGetCollections(collection);
+                        response.body().close();
                     }
                 });
             }

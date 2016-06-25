@@ -25,6 +25,7 @@ import com.tongming.jianshu.base.BaseActivity;
 import com.tongming.jianshu.bean.SearchResult;
 import com.tongming.jianshu.presenter.SearchPresenterCompl;
 import com.tongming.jianshu.provider.SearchSuggestionProvider;
+import com.tongming.jianshu.util.LogUtil;
 import com.tongming.jianshu.view.RecyclerViewDivider;
 
 import butterknife.BindView;

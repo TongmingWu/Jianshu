@@ -15,6 +15,7 @@
             android:id="@+id/iv_jianyou"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:src="@drawable/image_jianyouquan" />
 
         <TextView
@@ -22,26 +23,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/iv_jianyou"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@id/iv_jianyou"
             android:text="简友动态"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 
-        <TextView
+        <ImageView
             android:id="@+id/item_tv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text=">"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:layout_centerVertical="true"
+            android:src="@drawable/gywm_icon_tiaozhuan" />
 
         <TextView
             android:id="@+id/item_tv_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/item_tv_more"
             android:textColor="@android:color/black"
             android:textSize="16sp"

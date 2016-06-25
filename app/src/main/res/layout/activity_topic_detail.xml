@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@android:color/white"
-            app:navigationIcon="@drawable/ic_arrow_back_blue_grey_200_18dp"
+            app:navigationIcon="@drawable/ic_arrow_back_grey_900_18dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             toolbar:title="专题"
             toolbar:titleTextAppearance="?android:attr/textAppearanceMedium" />

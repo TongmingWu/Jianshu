@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        style="@style/cusProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp" />
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|snap"
+            app:navigationIcon="@drawable/ic_arrow_back_grey_900_18dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            toolbar:title="用户信息"
+            toolbar:titleTextAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            android:id="@+id/rl_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_scrollFlags="scroll|snap">
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/tv_about"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/avatar"
+                android:layout_centerHorizontal="true"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                tools:text="用户描述" />
+
+            <TextView
+                android:id="@+id/tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/tv_about"
+                android:layout_centerHorizontal="true"
+                tools:text="写了" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_num"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/btn_attention"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/attention_dr"
+                    android:gravity="center"
+                    android:text="+ 关注"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/btn_attention"
+                    android:background="@drawable/attention_dr"
+                    android:gravity="center"
+                    android:text="简信"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/user_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                app:tabIndicatorColor="@color/colorPrimary"
+                app:tabMaxWidth="240dp"
+                app:tabMode="scrollable" />
+        </android.support.v7.widget.CardView>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</android.support.design.widget.CoordinatorLayout>

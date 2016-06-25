@@ -18,6 +18,7 @@ import com.tongming.jianshu.adapter.onRecyclerViewItemClickListener;
 import com.tongming.jianshu.base.BaseActivity;
 import com.tongming.jianshu.bean.ColDetail;
 import com.tongming.jianshu.presenter.TopicDetailPreCompl;
+import com.tongming.jianshu.util.ToastUtil;
 import com.tongming.jianshu.view.GlideGircleTransform;
 import com.tongming.jianshu.view.RecyclerViewDivider;
 
@@ -99,5 +100,21 @@ public class TopicDetailActivity extends BaseActivity implements ITopicDetailVie
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onGetFailed(int code) {
+        switch (code){
+            case 404:
+                ToastUtil.showToast(this,"真不巧呢，您所查看的专题不存在。");
+                finish();
+                break;
+            case 502:
+                ToastUtil.showToast(this,"服务器出了一点问题，请重新试一下。");
+                finish();
+                break;
+            default:
+                break;
+        }
     }
 }

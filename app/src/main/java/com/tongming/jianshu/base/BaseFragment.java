@@ -15,6 +15,7 @@ public abstract class BaseFragment extends android.support.v4.app.Fragment {
     protected View mRootView;
     protected boolean isVisible = false;
     protected boolean isPrepared = false;
+    protected Boolean flag = false;
 
     @Nullable
     @Override

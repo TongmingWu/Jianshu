@@ -6,4 +6,5 @@
     <color name="divide_gray">@android:color/white</color>
     <color name="button_green">#49bf37</color>
     <color name="bg_white">#fafafa</color>
+    <color name="bg_timeline">#fcfcfc</color>
 </resources>

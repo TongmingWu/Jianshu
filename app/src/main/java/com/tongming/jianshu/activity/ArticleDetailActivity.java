@@ -5,6 +5,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -41,6 +42,8 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
     TextView like_count;
     @BindView(R.id.sl_content)
     ScrollView scrollView;
+    @BindView(R.id.rl_visible)
+    RelativeLayout visible;
     @BindView(R.id.progressbar)
     ProgressBar bar;
 
@@ -69,7 +72,7 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
     }
 
     @Override
-    public void onGetDetail(Detail detail) {
+    public void onGetDetail(final Detail detail) {
         if (scrollView.getVisibility() == View.GONE && bar.getVisibility() == View.VISIBLE) {
             scrollView.setVisibility(View.VISIBLE);
             bar.setVisibility(View.GONE);
@@ -81,6 +84,14 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
         author_date.setText("由" + detail.getAuthor().getNickname() + "于" + detail.getArticle().getCreated_at() + "创作");
         comment_count.setText(detail.getArticle().getComments_count() + "");
         like_count.setText(detail.getArticle().getLikes_count() + "");
+        visible.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArticleDetailActivity.this,UserActivity.class);
+                intent.putExtra("slug",detail.getAuthor().getSlug());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

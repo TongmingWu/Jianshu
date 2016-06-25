@@ -41,4 +41,18 @@ public class URLUtil {
 
     //搜索
     public static String SEARCH = SERVER + "search/";
+
+    //用户信息
+    public static String getUserLatest(String slug) {
+        return SERVER + "users/" + slug + "/latest_articles";
+    }
+
+    public static String getUserTop(String slug) {
+        return SERVER + "users/" + slug + "/top_articles";
+    }
+
+    public static String getUserTimeline(String slug) {
+        return SERVER + "users/" + slug + "/timeline";
+    }
+
 }
