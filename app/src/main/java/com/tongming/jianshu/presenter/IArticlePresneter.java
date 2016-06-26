@@ -8,5 +8,5 @@ import java.util.List;
 public interface IArticlePresneter {
     void getArticleList(String cid);
 
-    void loadMore(List<String> ids, int type);
+    void loadMore(List<String> ids, String page, int type);
 }

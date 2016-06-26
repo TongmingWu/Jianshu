@@ -10,6 +10,7 @@ import com.tongming.jianshu.base.BaseApplication;
 import com.tongming.jianshu.bean.UserLatest;
 import com.tongming.jianshu.bean.UserTimeLine;
 import com.tongming.jianshu.bean.UserTop;
+import com.tongming.jianshu.fragment.ITopView;
 import com.tongming.jianshu.util.URLUtil;
 
 import java.io.IOException;
@@ -25,12 +26,18 @@ import okhttp3.Response;
  */
 public class UserPresenterCompl implements IUserPresenter {
     private IUserView userView;
+    private ITopView topView;
     private Handler mHandler;
     private OkHttpClient client = BaseApplication.client;
     private Gson gson = BaseApplication.gson;
 
     public UserPresenterCompl(IUserView userView) {
         this.userView = userView;
+        mHandler = new Handler(Looper.getMainLooper());
+    }
+
+    public UserPresenterCompl(ITopView topView) {
+        this.topView = topView;
         mHandler = new Handler(Looper.getMainLooper());
     }
 
@@ -86,7 +93,7 @@ public class UserPresenterCompl implements IUserPresenter {
                 mHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        userView.onGetTop(top);
+                        topView.onGetTop(top);
                     }
                 });
             }

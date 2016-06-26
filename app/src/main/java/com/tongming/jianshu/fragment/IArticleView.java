@@ -7,5 +7,6 @@ import com.tongming.jianshu.bean.ArticleList;
  */
 public interface IArticleView {
     void onGetArticle(ArticleList list);
+    void onFailed();
     void onLoadMore(ArticleList list);
 }

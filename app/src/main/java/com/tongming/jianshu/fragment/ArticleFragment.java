@@ -1,5 +1,6 @@
 package com.tongming.jianshu.fragment;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +10,10 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
@@ -50,8 +48,6 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
 
     @BindView(R.id.hot_swipe)
     SwipeRefreshLayout refreshLayout;
-    /*@BindView(R.id.banner)
-    ConvenientBanner banner;*/
     @BindView(R.id.rv_hot)
     RecyclerView recyclerView;
     private ArticleRecylerViewAdapter adapter;
@@ -61,9 +57,6 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     private LinearLayoutManager layoutManager;
     private HeaderAndFooterRecyclerViewAdapter mAdapter;
     private LinearLayout footer;
-    private TextView textView;
-    private SeekBar seekBar;
-    private Display display;
 
     public static ArticleFragment newInstance(int type) {
         ArticleFragment articleFragment = new ArticleFragment();
@@ -145,28 +138,34 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
                 refreshLayout.setRefreshing(false);
             }
         });
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
                         && layoutManager.findLastCompletelyVisibleItemPosition() + 1 == mAdapter.getItemCount()) {
-
-                    //滑动到底部时触发加载更多数据的操作
-                    compl.loadMore(list.getIds(), type);
+                    boolean isRefreshing = refreshLayout.isRefreshing();
+                    if (isRefreshing) {
+                        adapter.notifyItemRemoved(adapter.getItemCount());
+                        return;
+                    } else {
+                        //滑动到底部时触发加载更多数据的操作
+                        compl.loadMore(list.getIds(), list.getPage(), type);
+                    }
                 }
             }
         });
 
         if (adapter == null) {
-            adapter = new ArticleRecylerViewAdapter(getActivity(), list.getResults());
+            adapter = new ArticleRecylerViewAdapter(getActivity(), articleList);
             //点击文章的事件监听
             adapter.setOnItemClickListener(new onRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(View view, String slug) {
                     Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
                     intent.putExtra("slug", slug);
-                    startActivity(intent);
+                    startActivity(intent,
+                            ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 }
             });
         } else {
@@ -211,14 +210,18 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
         RecyclerViewUtil.setFooterView(recyclerView, footer);
     }
 
+    @Override
+    public void onFailed() {
+        ToastUtil.showToast(getActivity(), "请求出错");
+    }
+
     //下拉加载,数据获取完成之后的操作
-    //TODO : 加载更多的时候数据反了
+    //TODO : 数据重复
     @Override
     public void onLoadMore(ArticleList list) {
-        List<Article> resultsBeanList = adapter.getList();
-        resultsBeanList.clear();
-        articleList.addAll(list.getResults());
-        resultsBeanList.addAll(articleList);
+        List<Article> resultsBeanList = list.getResults();
+        articleList.addAll(resultsBeanList);
+//        resultsBeanList.addAll(articleList);
         adapter.notifyDataSetChanged();
         LogUtil.d(TAG, adapter.getList().size() + "");
     }

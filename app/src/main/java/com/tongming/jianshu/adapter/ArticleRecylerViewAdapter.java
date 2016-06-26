@@ -1,5 +1,7 @@
 package com.tongming.jianshu.adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -85,16 +87,16 @@ public class ArticleRecylerViewAdapter extends RecyclerView.Adapter<RecyclerView
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, UserActivity.class);
-                    intent.putExtra("slug",bean.getAuthor_slug());
-                    context.startActivity(intent);
+                    intent.putExtra("slug", bean.getAuthor_slug());
+                    context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) context).toBundle());
                 }
             });
             ((CusViewHolder) holder).avatar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, UserActivity.class);
-                    intent.putExtra("slug",bean.getAuthor_slug());
-                    context.startActivity(intent);
+                    intent.putExtra("slug", bean.getAuthor_slug());
+                    context.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) context).toBundle());
                 }
             });
             ((CusViewHolder) holder).created.setText(time);

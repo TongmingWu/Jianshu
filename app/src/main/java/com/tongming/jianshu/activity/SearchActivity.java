@@ -1,5 +1,6 @@
 package com.tongming.jianshu.activity;
 
+import android.app.ActivityOptions;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +26,6 @@ import com.tongming.jianshu.base.BaseActivity;
 import com.tongming.jianshu.bean.SearchResult;
 import com.tongming.jianshu.presenter.SearchPresenterCompl;
 import com.tongming.jianshu.provider.SearchSuggestionProvider;
-import com.tongming.jianshu.util.LogUtil;
 import com.tongming.jianshu.view.RecyclerViewDivider;
 
 import butterknife.BindView;
@@ -128,7 +128,7 @@ public class SearchActivity extends BaseActivity implements ISearchView {
             public void onItemClick(View view, String slug) {
                 Intent intent = new Intent(SearchActivity.this, ArticleDetailActivity.class);
                 intent.putExtra("slug", slug);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SearchActivity.this).toBundle());
             }
         });
         recyclerView.setAdapter(recAdapter);
@@ -138,7 +138,7 @@ public class SearchActivity extends BaseActivity implements ISearchView {
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this, RelevantActivity.class);
                 intent.putExtra("list", users);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SearchActivity.this).toBundle());
             }
         });
         //获取更多专题信息
@@ -147,7 +147,7 @@ public class SearchActivity extends BaseActivity implements ISearchView {
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this, RelevantActivity.class);
                 intent.putExtra("list", collections);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SearchActivity.this).toBundle());
             }
         });
         //获取文集信息
@@ -156,7 +156,7 @@ public class SearchActivity extends BaseActivity implements ISearchView {
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this, RelevantActivity.class);
                 intent.putExtra("list", result.getNotebooks());
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SearchActivity.this).toBundle());
             }
         });
         gv_user.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -165,7 +165,7 @@ public class SearchActivity extends BaseActivity implements ISearchView {
                 String slug = users.getEntries().get(position).getSlug();
                 Intent intent = new Intent(SearchActivity.this, UserActivity.class);
                 intent.putExtra("slug", slug);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SearchActivity.this).toBundle());
             }
         });
         gv_collection.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -174,7 +174,7 @@ public class SearchActivity extends BaseActivity implements ISearchView {
                 String slug = collections.getEntries().get(position).getSlug();
                 Intent intent = new Intent(SearchActivity.this, TopicDetailActivity.class);
                 intent.putExtra("slug", slug);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SearchActivity.this).toBundle());
             }
         });
     }

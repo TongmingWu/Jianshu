@@ -1,5 +1,6 @@
 package com.tongming.jianshu.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -77,7 +78,7 @@ public class TopicDetailActivity extends BaseActivity implements ITopicDetailVie
 
     @Override
     public void onGetDetail(ColDetail colDetail) {
-        if(bar.getVisibility()==View.VISIBLE&&root.getVisibility()==View.GONE){
+        if (bar.getVisibility() == View.VISIBLE && root.getVisibility() == View.GONE) {
             root.setVisibility(View.VISIBLE);
             bar.setVisibility(View.GONE);
         }
@@ -96,7 +97,7 @@ public class TopicDetailActivity extends BaseActivity implements ITopicDetailVie
             public void onItemClick(View view, String slug) {
                 Intent intent = new Intent(TopicDetailActivity.this, ArticleDetailActivity.class);
                 intent.putExtra("slug", slug);
-                startActivity(intent);
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(TopicDetailActivity.this).toBundle());
             }
         });
         recyclerView.setAdapter(adapter);
@@ -104,13 +105,13 @@ public class TopicDetailActivity extends BaseActivity implements ITopicDetailVie
 
     @Override
     public void onGetFailed(int code) {
-        switch (code){
+        switch (code) {
             case 404:
-                ToastUtil.showToast(this,"真不巧呢，您所查看的专题不存在。");
+                ToastUtil.showToast(this, "真不巧呢，您所查看的专题不存在。");
                 finish();
                 break;
             case 502:
-                ToastUtil.showToast(this,"服务器出了一点问题，请重新试一下。");
+                ToastUtil.showToast(this, "服务器出了一点问题，请重新试一下。");
                 finish();
                 break;
             default:

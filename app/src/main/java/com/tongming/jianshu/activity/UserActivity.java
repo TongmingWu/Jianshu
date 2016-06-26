@@ -76,7 +76,7 @@ public class UserActivity extends BaseActivity implements IUserView {
         final String[] titles = new String[]{"动态", "文章", "更多"};
         final List<BaseFragment> fragmentList = new ArrayList<>();
         fragmentList.add(UserTimeLineFragment.newInstance(slug));
-        fragmentList.add(new UserArticleFragment());
+        fragmentList.add(UserArticleFragment.newInstance(slug));
         fragmentList.add(new UserMoreFragment());
         viewPager.setAdapter(new FragmentStatePagerAdapter((getSupportFragmentManager())) {
             @Override

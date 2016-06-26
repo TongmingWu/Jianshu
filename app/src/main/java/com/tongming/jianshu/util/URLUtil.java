@@ -30,11 +30,11 @@ public class URLUtil {
     //获取专题详细信息
     public static String COLLECTION_DETAIL = SERVER + "collection/";
 
-    public static String getMore(List<String> list) {
+    public static String getMore(List<String> list, String page) {
         for (int i = 0; i < list.size(); i++) {
-            MORE += "notes_id[]=" + list.get(i);
+            MORE += "note_ids%5B%5D=" + list.get(i) + "&";
         }
-        return MORE;
+        return MORE + "page=" + page;
     }
 
     public static String LOAD_NORMAL = SERVER + "more/normal/";

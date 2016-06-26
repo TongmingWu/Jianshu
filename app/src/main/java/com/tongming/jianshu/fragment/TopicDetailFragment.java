@@ -1,5 +1,6 @@
 package com.tongming.jianshu.fragment;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -92,7 +93,7 @@ public class TopicDetailFragment extends BaseFragment implements ITopicView {
             public void onItemClick(View view, String slug) {
                 Intent intent = new Intent(getActivity(), TopicDetailActivity.class);
                 intent.putExtra("slug", slug);
-                getActivity().startActivity(intent);
+                getActivity().startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
         });
         HeaderAndFooterRecyclerViewAdapter viewAdapter = new HeaderAndFooterRecyclerViewAdapter(topicAdapter);

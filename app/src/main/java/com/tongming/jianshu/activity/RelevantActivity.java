@@ -1,5 +1,6 @@
 package com.tongming.jianshu.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -65,7 +66,7 @@ public class RelevantActivity extends BaseActivity {
                 public void onItemClick(View view, String slug) {
                     Intent i = new Intent(RelevantActivity.this, UserActivity.class);
                     i.putExtra("slug", slug);
-                    startActivity(i);
+                    startActivity(i, ActivityOptions.makeSceneTransitionAnimation(RelevantActivity.this).toBundle());
                 }
             });
         } else if (extra instanceof SearchResult.CollectionsBean) {
@@ -77,7 +78,7 @@ public class RelevantActivity extends BaseActivity {
                 public void onItemClick(View view, String slug) {
                     Intent i = new Intent(RelevantActivity.this, TopicDetailActivity.class);
                     i.putExtra("slug", slug);
-                    startActivity(i);
+                    startActivity(i,ActivityOptions.makeSceneTransitionAnimation(RelevantActivity.this).toBundle());
                 }
             });
         } else {

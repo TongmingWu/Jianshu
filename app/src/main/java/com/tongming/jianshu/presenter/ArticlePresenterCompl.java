@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.tongming.jianshu.activity.ArticleDetailActivity;
 import com.tongming.jianshu.base.BaseApplication;
@@ -49,27 +50,37 @@ public class ArticlePresenterCompl implements IArticlePresneter {
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
                 //LogUtil.d("Article",response.body().string());
-                final ArticleList list = gson.fromJson(response.body().string(), new TypeToken<ArticleList>() {
-                }.getType());
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mArticleView.onGetArticle(list);
-                        response.body().close();
-                        LogUtil.d(ArticleDetailActivity.class.getSimpleName(), "获取文章数据成功");
-                    }
-                });
+                try {
+                    final ArticleList list = gson.fromJson(response.body().string(), new TypeToken<ArticleList>() {
+                    }.getType());
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mArticleView.onGetArticle(list);
+                            response.body().close();
+                            LogUtil.d(ArticleDetailActivity.class.getSimpleName(), "获取文章数据成功");
+                        }
+                    });
+                } catch (JsonSyntaxException e) {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mArticleView.onFailed();
+                        }
+                    });
+                }
             }
         });
     }
 
     @Override
-    public void loadMore(List<String> ids, int type) {
+    public void loadMore(List<String> ids, String page, int type) {
         Request request = null;
-        if(type==0){
-            request = new Request.Builder().url(URLUtil.getMore(ids)).build();
-        }else {
-            request = new Request.Builder().url(URLUtil.LOAD_NORMAL+ids.get(0)).build();
+        if (type == 0) {
+            LogUtil.d(ArticlePresenterCompl.class.getSimpleName(), URLUtil.getMore(ids, page));
+            request = new Request.Builder().url(URLUtil.getMore(ids, page)).build();
+        } else {
+            request = new Request.Builder().url(URLUtil.LOAD_NORMAL + ids.get(0)).build();
         }
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -79,16 +90,25 @@ public class ArticlePresenterCompl implements IArticlePresneter {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final ArticleList list = gson.fromJson(response.body().string(),
-                        new TypeToken<ArticleList>() {
-                        }.getType());
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        LogUtil.d("Article", "上拉加载数据成功");
-                        mArticleView.onLoadMore(list);
-                    }
-                });
+                try {
+                    final ArticleList list = gson.fromJson(response.body().string(),
+                            new TypeToken<ArticleList>() {
+                            }.getType());
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            LogUtil.d("Article", "上拉加载数据成功");
+                            mArticleView.onLoadMore(list);
+                        }
+                    });
+                }catch (JsonSyntaxException e){
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mArticleView.onFailed();
+                        }
+                    });
+                }
             }
         });
     }

@@ -1,5 +1,6 @@
 package com.tongming.jianshu.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -87,9 +88,9 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
         visible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ArticleDetailActivity.this,UserActivity.class);
-                intent.putExtra("slug",detail.getAuthor().getSlug());
-                startActivity(intent);
+                Intent intent = new Intent(ArticleDetailActivity.this, UserActivity.class);
+                intent.putExtra("slug", detail.getAuthor().getSlug());
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ArticleDetailActivity.this).toBundle());
             }
         });
     }
