@@ -176,7 +176,7 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
         recyclerView.setAdapter(mAdapter);
         if (type == 0) {
             //添加header
-            ConvenientBanner banner = (ConvenientBanner) View.inflate(getActivity(), R.layout.item_banner, null);
+            final ConvenientBanner banner = (ConvenientBanner) View.inflate(getActivity(), R.layout.item_banner, null);
             banner.setPages(new CBViewHolderCreator() {
                 @Override
                 public Object createHolder() {
@@ -198,14 +198,12 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
                 }
             }, list.getBanner()).setPageIndicator(new int[]{R.drawable.point_bg_normal, R.drawable.point_bg_enable})
                     .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL);
-            banner.setManualPageable(true);
+//            banner.setManualPageable(true);   //这TM就是个坑,是手动的- -,英语不好怪我咯
+            banner.startTurning(5000);
             final float scale = getActivity().getResources().getDisplayMetrics().density;
             int height = (int) (180 * scale + 0.5f);
             banner.setLayoutParams(new LinearLayoutCompat.LayoutParams(getActivity().getWindowManager().getDefaultDisplay().getWidth(), height));
             RecyclerViewUtil.setHeaderView(recyclerView, banner);
-        }
-        if (type >= 1 && type <= 8) {
-//            recyclerView.setAdapter(adapter);
         }
         RecyclerViewUtil.setFooterView(recyclerView, footer);
     }
@@ -213,10 +211,16 @@ public class ArticleFragment extends BaseFragment implements IArticleView {
     @Override
     public void onFailed() {
         ToastUtil.showToast(getActivity(), "请求出错");
+        refreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                ToastUtil.showToast(getActivity(), "正在重新请求数据");
+                compl.getArticleList(type + "");
+            }
+        });
     }
 
     //下拉加载,数据获取完成之后的操作
-    //TODO : 数据重复
     @Override
     public void onLoadMore(ArticleList list) {
         List<Article> resultsBeanList = list.getResults();

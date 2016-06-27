@@ -7,4 +7,5 @@ import com.tongming.jianshu.bean.Collection;
  */
 public interface ITopicView {
     void onGetCollections(Collection collection);
+    void onFailed(int code);
 }

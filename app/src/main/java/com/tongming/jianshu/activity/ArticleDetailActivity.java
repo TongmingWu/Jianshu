@@ -17,6 +17,7 @@ import com.tongming.jianshu.base.BaseApplication;
 import com.tongming.jianshu.bean.Detail;
 import com.tongming.jianshu.presenter.DetailPresenterCompl;
 import com.tongming.jianshu.util.LogUtil;
+import com.tongming.jianshu.util.ToastUtil;
 import com.tongming.jianshu.view.GlideGircleTransform;
 import com.tongming.jianshu.view.HtmlTextView;
 
@@ -50,6 +51,8 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
     ProgressBar bar;
     @BindView(R.id.rl_review)
     RelativeLayout review;
+    private DetailPresenterCompl compl;
+    private String slug;
 
     @Override
     protected int getLayoutId() {
@@ -70,8 +73,8 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
         scrollView.setVisibility(View.GONE);
         bar.setVisibility(View.VISIBLE);
         Intent intent = getIntent();
-        String slug = intent.getStringExtra("slug");
-        DetailPresenterCompl compl = new DetailPresenterCompl(this);
+        slug = intent.getStringExtra("slug");
+        compl = new DetailPresenterCompl(this);
         compl.getDetail(slug);
     }
 
@@ -106,6 +109,13 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
                         ActivityOptions.makeSceneTransitionAnimation(ArticleDetailActivity.this).toBundle());
             }
         });
+    }
+
+    @Override
+    public void onFailed(int code) {
+        ToastUtil.showToast(this, "请求失败");
+        compl.getDetail(slug);
+        ToastUtil.showToast(this, "正在重新获取");
     }
 
     @Override

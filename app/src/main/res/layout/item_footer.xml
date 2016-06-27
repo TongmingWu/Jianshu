@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_footer"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:layout_margin="10dp">
 
     <TextView
-        android:id="@+id/tv_load_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="正在加载"
         android:textSize="16sp" />
 
     <ProgressBar
-        android:id="@+id/load_next_page_progress"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_marginLeft="5dp"

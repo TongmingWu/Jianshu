@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.tongming.jianshu.base.BaseApplication;
 import com.tongming.jianshu.bean.Collection;
@@ -43,16 +44,20 @@ public class TopicPresenterCompl implements ITopicPresenter {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                final Collection collection = gson.fromJson(response.body().string(),
-                        new TypeToken<Collection>() {
-                        }.getType());
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        topicView.onGetCollections(collection);
-                        response.body().close();
-                    }
-                });
+                try {
+                    final Collection collection = gson.fromJson(response.body().string(),
+                            new TypeToken<Collection>() {
+                            }.getType());
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            topicView.onGetCollections(collection);
+                            response.body().close();
+                        }
+                    });
+                }catch (JsonSyntaxException e){
+                    topicView.onFailed(response.code());
+                }
             }
         });
     }

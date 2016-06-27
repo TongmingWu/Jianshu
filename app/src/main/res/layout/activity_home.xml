@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/rl_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        app:bnbActiveColor="@color/colorPrimary"
+        app:bnbActiveColor="@color/colorPrimaryDark"
         app:bnbBackgroundStyle="background_style_static"
         app:bnbMode="mode_shifting" />
 </RelativeLayout>

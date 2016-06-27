@@ -9,6 +9,7 @@
         android:id="@+id/cv_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:transitionName="transition"
         app:cardElevation="0dp">
 
         <RelativeLayout

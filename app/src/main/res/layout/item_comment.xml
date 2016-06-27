@@ -64,7 +64,6 @@
                 android:src="@drawable/hot_icon_like_night" />
 
             <ImageView
-                android:id="@+id/iv_hot_pinglun"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"

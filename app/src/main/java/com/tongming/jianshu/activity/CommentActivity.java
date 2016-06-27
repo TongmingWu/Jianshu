@@ -27,6 +27,7 @@ public class CommentActivity extends BaseActivity implements ICommentView {
     Toolbar toolbar;
     @BindView(R.id.progressbar)
     ProgressBar bar;
+    private CommentPresenterCompl compl;
 
     @Override
     protected int getLayoutId() {
@@ -45,7 +46,7 @@ public class CommentActivity extends BaseActivity implements ICommentView {
             });
         }
         bar.setVisibility(View.VISIBLE);
-        CommentPresenterCompl compl = new CommentPresenterCompl(this);
+        compl = new CommentPresenterCompl(this);
         compl.getComment(getIntent().getStringExtra("nid"));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new RecyclerViewDivider(
@@ -65,5 +66,7 @@ public class CommentActivity extends BaseActivity implements ICommentView {
     @Override
     public void onFailed(int code) {
         ToastUtil.showToast(this, "加载失败");
+        compl.getComment(getIntent().getStringExtra("nid"));
+        ToastUtil.showToast(this, "正在重新加载");
     }
 }

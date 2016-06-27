@@ -32,7 +32,7 @@ public class LineOption extends RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.item_option, this, true);
         //加载自定义属性
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LineOption);
-        mImg = array.getResourceId(R.styleable.LineOption_view_src, R.drawable.btn_switch_close_night);
+        mImg = array.getResourceId(R.styleable.LineOption_view_src, R.drawable.cb_icon_more_normal);
         mDesc = array.getString(R.styleable.LineOption_view_desc);
         mNum = array.getString(R.styleable.LineOption_view_num);
         array.recycle();

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Jianshu</string>
-    <string name="search_hint">搜索</string>
     <string-array name="article">
         <item>最新文章</item>
         <item>热门文章</item>

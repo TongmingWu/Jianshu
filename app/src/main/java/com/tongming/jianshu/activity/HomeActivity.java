@@ -1,7 +1,6 @@
 package com.tongming.jianshu.activity;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +11,6 @@ import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -40,7 +38,7 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.rl_root)
     RelativeLayout root;
 
-    private boolean isExit;
+    private static boolean isExit;
 
     private MyHandler mHandler = new MyHandler(this);
     private HomeFragment homeFragment;
@@ -50,7 +48,7 @@ public class HomeActivity extends BaseActivity {
     private MineFragment mineFragment;
     private SearchManager searchManager;
 
-    private class MyHandler extends Handler {
+    private static class MyHandler extends Handler {
         private final WeakReference<HomeActivity> mActivity;
 
         private MyHandler(HomeActivity activity) {
@@ -79,7 +77,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initViews() {
-        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         navigationBar.addItem(new BottomNavigationItem(R.drawable.cb_icon_discover_selected, "首页"))
                 .addItem(new BottomNavigationItem(R.drawable.cb_icon_guanzhu_normal, "关注"))
                 .addItem(new BottomNavigationItem(R.drawable.cb_icon_pen_normal, "投稿"))
@@ -157,7 +155,7 @@ public class HomeActivity extends BaseActivity {
 
             }
         });
-        searchManager.setOnCancelListener(new SearchManager.OnCancelListener() {
+        /*searchManager.setOnCancelListener(new SearchManager.OnCancelListener() {
             @Override
             public void onCancel() {
                 if (root.getVisibility() == View.INVISIBLE) {
@@ -172,7 +170,7 @@ public class HomeActivity extends BaseActivity {
                     root.setVisibility(View.VISIBLE);
                 }
             }
-        });
+        });*/
 
     }
 

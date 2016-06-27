@@ -7,4 +7,5 @@ import com.tongming.jianshu.bean.SearchResult;
  */
 public interface ISearchView {
     void onSearch(SearchResult result);
+    void onFailed(int code);
 }

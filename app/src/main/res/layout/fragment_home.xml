@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:background="#fafafa"
                 android:layout_alignParentRight="true"
+                android:transitionName="transition"
                 android:layout_centerVertical="true"
                 android:src="@drawable/find_search" />
 

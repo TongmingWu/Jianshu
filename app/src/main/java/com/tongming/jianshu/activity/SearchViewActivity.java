@@ -41,6 +41,7 @@ public class SearchViewActivity extends BaseActivity {
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private Set<String> querySet;
+    private QueryAdapter adapter;
 
 
     @Override
@@ -57,7 +58,8 @@ public class SearchViewActivity extends BaseActivity {
             querySet = new HashSet<>();
         } else {
             if (querySet.size() != 0) {
-                listView.setAdapter(new QueryAdapter(querySet, this));
+                adapter = new QueryAdapter(querySet, this);
+                listView.setAdapter(adapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -128,7 +130,8 @@ public class SearchViewActivity extends BaseActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                querySet.clear();
+                adapter.notifyDataSetChanged();
             }
         });
     }

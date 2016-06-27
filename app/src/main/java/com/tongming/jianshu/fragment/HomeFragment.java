@@ -92,7 +92,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), SearchViewActivity.class),
-                        ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+                        ActivityOptions.makeSceneTransitionAnimation(getActivity(), search, "transition").toBundle());
             }
         });
     }

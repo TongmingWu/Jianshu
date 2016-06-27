@@ -18,6 +18,7 @@ import com.tongming.jianshu.base.BaseFragment;
 import com.tongming.jianshu.bean.Collection;
 import com.tongming.jianshu.presenter.TopicPresenterCompl;
 import com.tongming.jianshu.util.RecyclerViewUtil;
+import com.tongming.jianshu.util.ToastUtil;
 import com.tongming.jianshu.view.RecyclerViewDivider;
 
 import butterknife.BindView;
@@ -32,6 +33,7 @@ public class TopicDetailFragment extends BaseFragment implements ITopicView {
     @BindView(R.id.srl_topic)
     SwipeRefreshLayout refreshLayout;
     boolean flag;
+    private TopicPresenterCompl compl;
 
     public static TopicDetailFragment getInstance(int type) {
         TopicDetailFragment fragment = new TopicDetailFragment();
@@ -73,7 +75,7 @@ public class TopicDetailFragment extends BaseFragment implements ITopicView {
                     refreshLayout.setRefreshing(true);
                 }
             });
-            TopicPresenterCompl compl = new TopicPresenterCompl(this);
+            compl = new TopicPresenterCompl(this);
             type = getArguments().getInt("type");
             compl.getCollections(type);
         }
@@ -103,5 +105,12 @@ public class TopicDetailFragment extends BaseFragment implements ITopicView {
             RecyclerViewUtil.setHeaderView(recyclerView, view);
 //            recyclerView.setAdapter(topicAdapter);//测试
         }
+    }
+
+    @Override
+    public void onFailed(int code) {
+        ToastUtil.showToast(getActivity(), "请求失败");
+        compl.getCollections(type);
+        ToastUtil.showToast(getActivity(), "正在重新请求");
     }
 }

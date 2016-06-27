@@ -7,4 +7,5 @@ import com.tongming.jianshu.bean.Detail;
  */
 public interface IDetailView {
     void onGetDetail(Detail detail);
+    void onFailed(int code);
 }

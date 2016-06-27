@@ -1,10 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="我的"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="我的"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/mine_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/tx_image_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/mine_avatar"
+            android:text="未登录"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/gywm_icon_tiaozhuan" />
+    </RelativeLayout>
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:view_desc="公开文章"
+        app:view_src="@drawable/grzy_icon_article_public" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="私密文章"
+        app:view_src="@drawable/grzy_icon_article_secret" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="我的收藏"
+        app:view_src="@drawable/grzy_icon_mark" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="喜欢的文章"
+        app:view_src="@drawable/grzy_icon_like_normal" />
+
+    <com.tongming.jianshu.view.LineOption
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:view_desc="我的钱包"
+        app:view_src="@drawable/grzy_icon_wallet_normal" />
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.tongming.jianshu.activity.IDetailView;
 import com.tongming.jianshu.base.BaseApplication;
@@ -43,16 +44,25 @@ public class DetailPresenterCompl implements IDetailPresenter {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                final Detail detail = gson.fromJson(response.body().string(),
-                        new TypeToken<Detail>() {
-                        }.getType());
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mDetailView.onGetDetail(detail);
-                        response.body().close();
-                    }
-                });
+                try {
+                    final Detail detail = gson.fromJson(response.body().string(),
+                            new TypeToken<Detail>() {
+                            }.getType());
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mDetailView.onGetDetail(detail);
+                            response.body().close();
+                        }
+                    });
+                } catch (JsonSyntaxException e) {
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            mDetailView.onFailed(response.code());
+                        }
+                    });
+                }
             }
         });
     }

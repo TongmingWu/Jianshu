@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.tongming.jianshu.activity.ITopicDetailView;
 import com.tongming.jianshu.base.BaseApplication;
@@ -42,18 +43,27 @@ public class TopicDetailPreCompl {
 
             @Override
             public void onResponse(Call call, final Response response) throws IOException {
-                if(response.code()==200){
-                    final ColDetail colDetail = gson.fromJson(response.body().string(),
-                            new TypeToken<ColDetail>() {
-                            }.getType());
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            topicDetailView.onGetDetail(colDetail);
-                            response.body().close();
-                        }
-                    });
-                }else {
+                if (response.code() == 200) {
+                    try {
+                        final ColDetail colDetail = gson.fromJson(response.body().string(),
+                                new TypeToken<ColDetail>() {
+                                }.getType());
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                topicDetailView.onGetDetail(colDetail);
+                                response.body().close();
+                            }
+                        });
+                    } catch (JsonSyntaxException e) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                topicDetailView.onGetFailed(502);
+                            }
+                        });
+                    }
+                } else {
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {

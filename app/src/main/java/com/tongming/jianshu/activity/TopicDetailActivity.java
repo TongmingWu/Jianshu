@@ -49,6 +49,7 @@ public class TopicDetailActivity extends BaseActivity implements ITopicDetailVie
     LinearLayout root;
     @BindView(R.id.progressbar)
     ProgressBar bar;
+    private TopicDetailPreCompl compl;
 
     @Override
     protected int getLayoutId() {
@@ -72,7 +73,7 @@ public class TopicDetailActivity extends BaseActivity implements ITopicDetailVie
         ));
         recyclerView.setNestedScrollingEnabled(false);
         bar.setVisibility(View.VISIBLE);
-        TopicDetailPreCompl compl = new TopicDetailPreCompl(this);
+        compl = new TopicDetailPreCompl(this);
         compl.getTopicDetail(getIntent().getStringExtra("slug"));
     }
 
@@ -111,8 +112,8 @@ public class TopicDetailActivity extends BaseActivity implements ITopicDetailVie
                 finish();
                 break;
             case 502:
-                ToastUtil.showToast(this, "服务器出了一点问题，请重新试一下。");
-                finish();
+                ToastUtil.showToast(this, "服务器出了一点问题，正在重新连接中。");
+                compl.getTopicDetail(getIntent().getStringExtra("slug"));
                 break;
             default:
                 break;

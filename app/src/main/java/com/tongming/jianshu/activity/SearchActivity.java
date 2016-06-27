@@ -23,6 +23,7 @@ import com.tongming.jianshu.adapter.onRecyclerViewItemClickListener;
 import com.tongming.jianshu.base.BaseActivity;
 import com.tongming.jianshu.bean.SearchResult;
 import com.tongming.jianshu.presenter.SearchPresenterCompl;
+import com.tongming.jianshu.util.ToastUtil;
 import com.tongming.jianshu.view.RecyclerViewDivider;
 
 import butterknife.BindView;
@@ -53,6 +54,8 @@ public class SearchActivity extends BaseActivity implements ISearchView {
     ProgressBar bar;
 
     private static final String TAG = SearchActivity.class.getSimpleName();
+    private SearchPresenterCompl compl;
+    private String query;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,13 +77,13 @@ public class SearchActivity extends BaseActivity implements ISearchView {
                 this, SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE
         );
         suggestions.saveRecentQuery(query, null);*/
-        String query = getIntent().getStringExtra("query");
+        query = getIntent().getStringExtra("query");
         toolbar.setTitle("搜索：" + query);
         root.setVisibility(View.GONE);
         if (bar.getVisibility() == View.GONE) {
             bar.setVisibility(View.VISIBLE);
         }
-        SearchPresenterCompl compl = new SearchPresenterCompl(this);
+        compl = new SearchPresenterCompl(this);
         compl.search(query);
     }
 
@@ -173,5 +176,12 @@ public class SearchActivity extends BaseActivity implements ISearchView {
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SearchActivity.this).toBundle());
             }
         });
+    }
+
+    @Override
+    public void onFailed(int code) {
+        ToastUtil.showToast(this, "搜索失败");
+        compl.search(query);
+        ToastUtil.showToast(this, "正在重新搜索");
     }
 }
