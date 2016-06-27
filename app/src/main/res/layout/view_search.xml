@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_back_grey_900_18dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/iv_back"
+                android:background="@drawable/bg_timeline">
+
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:background="@null"
+                    android:hint="搜索"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="1dp"
+                    android:src="@drawable/search_icon" />
+
+                <TextView
+                    android:id="@+id/tv_line"
+                    android:layout_width="1px"
+                    android:layout_height="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/iv_search"
+                    android:background="#212121" />
+
+                <ImageView
+                    android:id="@+id/iv_clear"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/tv_line"
+                    android:src="@drawable/ic_clear_black_18dp"
+                     />
+            </RelativeLayout>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <ListView
+        android:id="@+id/lv_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cv_search"
+        android:layout_marginTop="5dp"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="1px" />
+
+    <TextView
+        android:id="@+id/tv_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/lv_search"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/tv_clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_divider"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="清除搜索记录"
+        android:textSize="16sp" />
+
+</RelativeLayout>

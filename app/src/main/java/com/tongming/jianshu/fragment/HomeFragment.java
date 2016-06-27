@@ -1,5 +1,7 @@
 package com.tongming.jianshu.fragment;
 
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.tongming.jianshu.R;
+import com.tongming.jianshu.activity.SearchViewActivity;
 import com.tongming.jianshu.base.BaseFragment;
 
 import butterknife.BindView;
@@ -88,7 +91,8 @@ public class HomeFragment extends BaseFragment {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().onSearchRequested();
+                startActivity(new Intent(getActivity(), SearchViewActivity.class),
+                        ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
             }
         });
     }

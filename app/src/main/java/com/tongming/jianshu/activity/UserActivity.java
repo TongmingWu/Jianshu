@@ -66,7 +66,7 @@ public class UserActivity extends BaseActivity implements IUserView {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    onBackPressed();
                 }
             });
         }

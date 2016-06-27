@@ -16,6 +16,7 @@ import com.tongming.jianshu.base.BaseActivity;
 import com.tongming.jianshu.base.BaseApplication;
 import com.tongming.jianshu.bean.Detail;
 import com.tongming.jianshu.presenter.DetailPresenterCompl;
+import com.tongming.jianshu.util.LogUtil;
 import com.tongming.jianshu.view.GlideGircleTransform;
 import com.tongming.jianshu.view.HtmlTextView;
 
@@ -47,6 +48,8 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
     RelativeLayout visible;
     @BindView(R.id.progressbar)
     ProgressBar bar;
+    @BindView(R.id.rl_review)
+    RelativeLayout review;
 
     @Override
     protected int getLayoutId() {
@@ -60,7 +63,7 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    onBackPressed();
                 }
             });
         }
@@ -91,6 +94,16 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
                 Intent intent = new Intent(ArticleDetailActivity.this, UserActivity.class);
                 intent.putExtra("slug", detail.getAuthor().getSlug());
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(ArticleDetailActivity.this).toBundle());
+            }
+        });
+        review.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ArticleDetailActivity.this, CommentActivity.class);
+                intent.putExtra("nid", detail.getArticle().getId() + "");
+                LogUtil.d(ArticleDetailActivity.class.getSimpleName(), detail.getArticle().getId() + "");
+                startActivity(intent,
+                        ActivityOptions.makeSceneTransitionAnimation(ArticleDetailActivity.this).toBundle());
             }
         });
     }

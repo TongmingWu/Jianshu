@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="1dp">
+
+    <LinearLayout
+        android:id="@+id/rl_comment_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/iv_comment_avatar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/tx_image_1" />
+
+            <TextView
+                android:id="@+id/tv_comment_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/iv_comment_avatar"
+                android:textColor="@android:color/black"
+                tools:text="评论者昵称" />
+
+            <TextView
+                android:id="@+id/tv_comment_floor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/tv_comment_nickname"
+                android:layout_below="@id/tv_comment_nickname"
+                android:layout_marginTop="5dp"
+                tools:text="1楼" />
+
+            <TextView
+                android:id="@+id/tv_comment_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_comment_floor"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@id/tv_comment_floor"
+                tools:text="18:55" />
+
+            <ImageView
+                android:id="@+id/iv_hot_like"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/hot_icon_like_night" />
+
+            <ImageView
+                android:id="@+id/iv_hot_pinglun"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_toLeftOf="@id/iv_hot_like"
+                android:src="@drawable/hot_icon_pinglun_night" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_comment_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_user_info"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="3dp"
+            android:textColor="@android:color/black"
+            tools:text="回复内容回复内容回复内容回复内容回复内容回复内容" />
+
+        <!--<RelativeLayout
+            android:id="@+id/rl_inner_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_below="@id/tv_comment_content"
+            android:layout_marginTop="10dp"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_xuxian"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/xuxian" />
+
+            <TextView
+                android:id="@+id/tv_inner_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_xuxian"
+                android:background="@drawable/bg_timeline"
+                android:layout_marginTop="8dp"
+                tools:text="楼中楼内容楼中楼内容楼中楼内容" />
+        </RelativeLayout>-->
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -6,7 +6,6 @@ import java.util.List;
  * Created by Tongming on 2016/5/21.
  */
 public class URLUtil {
-    //    public static String SERVER = "http://192.168.191.1:5000/";
 //    public static String SERVER = "http://10.12.243.252:5000/";
     public static String SERVER = "http://45.78.25.201/";
     //获取其他类别的文章

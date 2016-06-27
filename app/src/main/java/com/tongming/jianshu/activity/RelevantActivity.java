@@ -50,7 +50,7 @@ public class RelevantActivity extends BaseActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    onBackPressed();
                 }
             });
         }
@@ -78,7 +78,7 @@ public class RelevantActivity extends BaseActivity {
                 public void onItemClick(View view, String slug) {
                     Intent i = new Intent(RelevantActivity.this, TopicDetailActivity.class);
                     i.putExtra("slug", slug);
-                    startActivity(i,ActivityOptions.makeSceneTransitionAnimation(RelevantActivity.this).toBundle());
+                    startActivity(i, ActivityOptions.makeSceneTransitionAnimation(RelevantActivity.this).toBundle());
                 }
             });
         } else {

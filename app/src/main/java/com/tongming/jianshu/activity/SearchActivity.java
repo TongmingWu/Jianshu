@@ -1,10 +1,8 @@
 package com.tongming.jianshu.activity;
 
 import android.app.ActivityOptions;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SearchRecentSuggestions;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,7 +23,6 @@ import com.tongming.jianshu.adapter.onRecyclerViewItemClickListener;
 import com.tongming.jianshu.base.BaseActivity;
 import com.tongming.jianshu.bean.SearchResult;
 import com.tongming.jianshu.presenter.SearchPresenterCompl;
-import com.tongming.jianshu.provider.SearchSuggestionProvider;
 import com.tongming.jianshu.view.RecyclerViewDivider;
 
 import butterknife.BindView;
@@ -72,20 +69,19 @@ public class SearchActivity extends BaseActivity implements ISearchView {
     }
 
     private void handleIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(
-                    this, SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE
-            );
-            suggestions.saveRecentQuery(query, null);
-            toolbar.setTitle("搜索：" + query);
-            root.setVisibility(View.GONE);
-            if (bar.getVisibility() == View.GONE) {
-                bar.setVisibility(View.VISIBLE);
-            }
-            SearchPresenterCompl compl = new SearchPresenterCompl(this);
-            compl.search(query);
+        /*String query = intent.getStringExtra(SearchManager.QUERY);
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(
+                this, SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE
+        );
+        suggestions.saveRecentQuery(query, null);*/
+        String query = getIntent().getStringExtra("query");
+        toolbar.setTitle("搜索：" + query);
+        root.setVisibility(View.GONE);
+        if (bar.getVisibility() == View.GONE) {
+            bar.setVisibility(View.VISIBLE);
         }
+        SearchPresenterCompl compl = new SearchPresenterCompl(this);
+        compl.search(query);
     }
 
     @Override
@@ -100,7 +96,7 @@ public class SearchActivity extends BaseActivity implements ISearchView {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    onBackPressed();
                 }
             });
         }

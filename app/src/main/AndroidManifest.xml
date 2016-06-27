@@ -25,7 +25,7 @@
                 android:name="android.app.default_searchable"
                 android:value="com.tongming.jianshu.activity.SearchActivity" />
         </activity>
-        <activity
+        <!--<activity
             android:name=".activity.SearchActivity"
             android:launchMode="singleTop"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -35,7 +35,13 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
-        </activity>
+        </activity>-->
+        <activity
+            android:name=".activity.SearchActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.SearchViewActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.ArticleDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -45,8 +51,12 @@
         <activity
             android:name=".activity.RelevantActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".activity.UserActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".activity.UserActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.CommentActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <provider
             android:name=".provider.SearchSuggestionProvider"

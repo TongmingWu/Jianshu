@@ -3,6 +3,9 @@ package com.tongming.jianshu.activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
@@ -24,6 +28,7 @@ import com.tongming.jianshu.fragment.TougaoFragment;
 import com.tongming.jianshu.util.ToastUtil;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
 
 import butterknife.BindView;
 
@@ -200,12 +205,34 @@ public class HomeActivity extends BaseActivity {
         transaction.commit();
     }
 
-    @Override
+ /*   @Override
     public boolean onSearchRequested() {
         root.setVisibility(View.INVISIBLE);
+//        setSearchIcon();
         return super.onSearchRequested();
-    }
+    }*/
 
+    public void setSearchIcon() {
+        try {
+            //通过反射修改搜索框的图标
+            Class activityClass = Class.forName("android.app.Activity");
+            Field activityClassf = activityClass.getDeclaredField("mSearchManager");
+            activityClassf.setAccessible(true);
+            Object mSearchManager = activityClassf.get(this);
+            Class searchClass = Class.forName("android.app.SearchManager");
+            Field mSearchDialogf = searchClass.getDeclaredField("mSearchDialog");
+            mSearchDialogf.setAccessible(true);
+            Object mSearchDialog = mSearchDialogf.get(mSearchManager);
+            Class searchDialog = Class.forName("android.app.SearchDialog");
+            Field mAppIcon = searchDialog.getDeclaredField("mAppIcon");
+            mAppIcon.setAccessible(true);
+            ImageView imageView = (ImageView) mAppIcon.get(mSearchDialog);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_menu_search_holo_light);
+            imageView.setImageDrawable(new BitmapDrawable(bitmap));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
