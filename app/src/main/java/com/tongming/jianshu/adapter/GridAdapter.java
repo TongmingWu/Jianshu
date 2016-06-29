@@ -57,7 +57,7 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = convertView.inflate(context, R.layout.item_grid, null);
+        convertView = View.inflate(context, R.layout.item_grid, null);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.item_avatar);
         TextView textView = (TextView) convertView.findViewById(R.id.item_desc);
         if (users != null) {

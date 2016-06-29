@@ -678,7 +678,7 @@ public class SearchResult {
             this.total_count = in.readInt();
             this.per_page = in.readInt();
             this.total_pages = in.readInt();
-            this.entries = new ArrayList<EntriesBean>();
+            this.entries = new ArrayList<>();
             in.readList(this.entries, EntriesBean.class.getClassLoader());
         }
 
@@ -944,7 +944,7 @@ public class SearchResult {
                 this.content = in.readString();
                 this.title = in.readString();
                 this.id = in.readInt();
-                this.editors = new ArrayList<EditorsBean>();
+                this.editors = new ArrayList<>();
                 in.readList(this.editors, EditorsBean.class.getClassLoader());
             }
 
@@ -987,7 +987,7 @@ public class SearchResult {
             this.page = in.readInt();
             this.per_page = in.readInt();
             this.total_pages = in.readInt();
-            this.entries = new ArrayList<EntriesBean>();
+            this.entries = new ArrayList<>();
             in.readList(this.entries, EntriesBean.class.getClassLoader());
         }
 
@@ -1224,7 +1224,7 @@ public class SearchResult {
             this.total_count = in.readInt();
             this.per_page = in.readInt();
             this.total_pages = in.readInt();
-            this.entries = new ArrayList<EntriesBean>();
+            this.entries = new ArrayList<>();
             in.readList(this.entries, EntriesBean.class.getClassLoader());
         }
 

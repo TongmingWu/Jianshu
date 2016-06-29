@@ -144,7 +144,6 @@
                     android:id="@+id/rl_review"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/tv_line_vertical"
                     android:layout_weight="1">
 
                     <ImageView
@@ -172,7 +171,6 @@
                     android:id="@+id/rl_like"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/rl_review"
                     android:layout_weight="1">
 
                     <ImageView
@@ -197,13 +195,11 @@
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/rl_like"
                     android:layout_weight="1">
 
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_weight="1"
                         android:src="@drawable/icon_image_share_night" />
                 </RelativeLayout>
             </LinearLayout>

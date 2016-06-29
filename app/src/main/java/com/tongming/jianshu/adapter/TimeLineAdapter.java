@@ -38,8 +38,7 @@ public class TimeLineAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.item_timeline, null);
-        LineViewHolder holder = new LineViewHolder(view);
-        return holder;
+        return new LineViewHolder(view);
     }
 
     @Override

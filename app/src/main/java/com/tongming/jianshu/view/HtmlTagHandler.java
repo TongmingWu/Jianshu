@@ -18,7 +18,7 @@ import java.util.Vector;
  */
 public class HtmlTagHandler implements Html.TagHandler {
     private int mListItemCount = 0;
-    private final Vector<String> mListParents = new Vector<String>();
+    private final Vector<String> mListParents = new Vector<>();
 
     private static class Code {
     }

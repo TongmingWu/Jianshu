@@ -30,7 +30,7 @@ public class ArticleTabFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        final List<String> tabTitles = new ArrayList<String>();
+        final List<String> tabTitles = new ArrayList<>();
         Collections.addAll(tabTitles, TAB);
         final List<BaseFragment> fragmentList = new ArrayList<>();
         //fragmentList.add(new ArticleFragment());

@@ -29,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_toRightOf="@id/avatar"
                 android:textColor="@android:color/holo_blue_dark"
                 tools:text="作者名称" />
@@ -39,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/tv_author"
+                android:layout_alignBottom="@id/tv_author"
                 tools:text="05.16 14:50" />
 
             <TextView

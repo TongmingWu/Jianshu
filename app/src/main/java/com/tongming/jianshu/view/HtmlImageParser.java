@@ -36,7 +36,6 @@ public class HtmlImageParser implements Html.ImageGetter {
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                         float scaleWidth = ((float) width) / loadedImage.getWidth();//缩放比例
-                        float scaleHeight = ((float) height) / loadedImage.getHeight();
                         Matrix matrix = new Matrix();
                         matrix.postScale(scaleWidth, scaleWidth);
 

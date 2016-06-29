@@ -52,8 +52,6 @@ public class TimeLinePresenterCompl {
                             timeLineView.onGetTimeLine(timeLine);
                         }
                     });
-                } else {
-
                 }
             }
         });

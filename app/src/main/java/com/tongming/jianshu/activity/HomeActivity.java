@@ -52,7 +52,7 @@ public class HomeActivity extends BaseActivity {
         private final WeakReference<HomeActivity> mActivity;
 
         private MyHandler(HomeActivity activity) {
-            mActivity = new WeakReference<HomeActivity>(activity);
+            mActivity = new WeakReference<>(activity);
         }
 
         @Override

@@ -20,6 +20,5 @@
         android:id="@+id/vp_article"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tl_content"
         android:layout_marginBottom="60dp" />
 </LinearLayout>

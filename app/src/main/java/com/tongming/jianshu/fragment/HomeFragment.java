@@ -35,7 +35,6 @@ public class HomeFragment extends BaseFragment {
     LinearLayout root;
 
 
-    private String[] TAB = {"热门", "新上榜", "日报", "七日热门", "三十日热门", "市集", "有奖活动", "简书出版", "简书博客"};
     private ArticleTabFragment articleTabFragment;
     private TopicFragment topicFragment;
 

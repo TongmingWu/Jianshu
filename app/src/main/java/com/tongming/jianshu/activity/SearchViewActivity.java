@@ -131,6 +131,7 @@ public class SearchViewActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 querySet.clear();
+                editor.putStringSet("query", querySet).commit();
                 adapter.notifyDataSetChanged();
             }
         });

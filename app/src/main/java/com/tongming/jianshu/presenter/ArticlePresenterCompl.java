@@ -75,7 +75,7 @@ public class ArticlePresenterCompl implements IArticlePresneter {
 
     @Override
     public void loadMore(List<String> ids, String page, int type) {
-        Request request = null;
+        Request request ;
         if (type == 0) {
             LogUtil.d(ArticlePresenterCompl.class.getSimpleName(), URLUtil.getMore(ids, page));
             request = new Request.Builder().url(URLUtil.getMore(ids, page)).build();
