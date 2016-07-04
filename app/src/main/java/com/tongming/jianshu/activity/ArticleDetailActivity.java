@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.tongming.jianshu.R;
 import com.tongming.jianshu.base.BaseActivity;
 import com.tongming.jianshu.base.BaseApplication;
@@ -53,6 +54,11 @@ public class ArticleDetailActivity extends BaseActivity implements IDetailView {
     RelativeLayout review;
     private DetailPresenterCompl compl;
     private String slug;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected int getLayoutId() {

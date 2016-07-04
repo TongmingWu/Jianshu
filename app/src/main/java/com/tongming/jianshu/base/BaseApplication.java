@@ -45,8 +45,8 @@ public class BaseApplication extends Application {
         int cacheSize = 10 * 1024 * 1024;
         Cache cache = new Cache(cacheFile, cacheSize);
         client = new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .writeTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .followRedirects(true)
                 .cache(cache)

@@ -20,6 +20,7 @@
     </android.support.v7.widget.CardView>
 
     <RelativeLayout
+        android:id="@+id/rl_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -33,6 +34,7 @@
             android:src="@drawable/tx_image_1" />
 
         <TextView
+            android:id="@+id/mine_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"

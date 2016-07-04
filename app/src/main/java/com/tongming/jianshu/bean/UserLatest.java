@@ -1,11 +1,15 @@
 package com.tongming.jianshu.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Tongming on 2016/6/21.
  */
-public class UserLatest {
+public class UserLatest implements Parcelable {
 
 
     /**
@@ -510,4 +514,78 @@ public class UserLatest {
             this.slug = slug;
         }
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.nickname);
+        dest.writeString(this.follower_num);
+        dest.writeInt(this.following_num);
+        dest.writeString(this.about);
+        dest.writeString(this.avatar);
+        dest.writeString(this.like_num);
+        dest.writeInt(this.notebook_num);
+        dest.writeString(this.subscription_num);
+        dest.writeString(this.article_num);
+        dest.writeInt(this.collection_num);
+        dest.writeInt(this.page);
+        dest.writeString(this.slug);
+        dest.writeString(this.word_age);
+        dest.writeList(this.sub_collections);
+        dest.writeList(this.collections);
+        dest.writeList(this.sub_notebooks);
+        dest.writeList(this.books);
+        dest.writeList(this.followings);
+        dest.writeList(this.latest_articles);
+        dest.writeList(this.fans);
+    }
+
+    public UserLatest() {
+    }
+
+    protected UserLatest(Parcel in) {
+        this.nickname = in.readString();
+        this.follower_num = in.readString();
+        this.following_num = in.readInt();
+        this.about = in.readString();
+        this.avatar = in.readString();
+        this.like_num = in.readString();
+        this.notebook_num = in.readInt();
+        this.subscription_num = in.readString();
+        this.article_num = in.readString();
+        this.collection_num = in.readInt();
+        this.page = in.readInt();
+        this.slug = in.readString();
+        this.word_age = in.readString();
+        this.sub_collections = new ArrayList<SubCollectionsBean>();
+        in.readList(this.sub_collections, SubCollectionsBean.class.getClassLoader());
+        this.collections = new ArrayList<CollectionsBean>();
+        in.readList(this.collections, CollectionsBean.class.getClassLoader());
+        this.sub_notebooks = new ArrayList<SubNotebooksBean>();
+        in.readList(this.sub_notebooks, SubNotebooksBean.class.getClassLoader());
+        this.books = new ArrayList<BooksBean>();
+        in.readList(this.books, BooksBean.class.getClassLoader());
+        this.followings = new ArrayList<FollowingsBean>();
+        in.readList(this.followings, FollowingsBean.class.getClassLoader());
+        this.latest_articles = new ArrayList<Article>();
+        in.readList(this.latest_articles, Article.class.getClassLoader());
+        this.fans = new ArrayList<FansBean>();
+        in.readList(this.fans, FansBean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<UserLatest> CREATOR = new Parcelable.Creator<UserLatest>() {
+        @Override
+        public UserLatest createFromParcel(Parcel source) {
+            return new UserLatest(source);
+        }
+
+        @Override
+        public UserLatest[] newArray(int size) {
+            return new UserLatest[size];
+        }
+    };
 }

@@ -2,6 +2,7 @@ package com.tongming.jianshu.activity;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -18,6 +19,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.tongming.jianshu.R;
 import com.tongming.jianshu.base.BaseActivity;
+import com.tongming.jianshu.bean.LoginUser;
 import com.tongming.jianshu.fragment.AttentionFragment;
 import com.tongming.jianshu.fragment.HomeFragment;
 import com.tongming.jianshu.fragment.MineFragment;
@@ -47,6 +49,8 @@ public class HomeActivity extends BaseActivity {
     private RemindFragment remindFragment;
     private MineFragment mineFragment;
     private SearchManager searchManager;
+    private LoginUser user;
+    private SharedPreferences sp;
 
     private static class MyHandler extends Handler {
         private final WeakReference<HomeActivity> mActivity;
@@ -77,6 +81,7 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public void initViews() {
+        sp = getSharedPreferences("config", MODE_PRIVATE);
 //        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         navigationBar.addItem(new BottomNavigationItem(R.drawable.cb_icon_discover_selected, "首页"))
                 .addItem(new BottomNavigationItem(R.drawable.cb_icon_guanzhu_normal, "关注"))
@@ -134,7 +139,11 @@ public class HomeActivity extends BaseActivity {
                     case 4:
                         hideTab(transaction);
                         if (mineFragment == null) {
-                            mineFragment = new MineFragment();
+                            if (sp.getBoolean("isLogin", false)) {
+                                mineFragment = MineFragment.newInstance(user);
+                            } else {
+                                mineFragment = new MineFragment();
+                            }
                             transaction.add(R.id.rl_container, mineFragment, "mine");
                         } else {
                             mineFragment = (MineFragment) manager.findFragmentByTag("mine");
@@ -185,7 +194,7 @@ public class HomeActivity extends BaseActivity {
             transaction.hide(tougaoFragment);
         }
         if (mineFragment != null) {
-            transaction.hide(tougaoFragment);
+            transaction.hide(mineFragment);
         }
         if (remindFragment != null) {
             transaction.hide(remindFragment);
@@ -203,12 +212,6 @@ public class HomeActivity extends BaseActivity {
         transaction.commit();
     }
 
- /*   @Override
-    public boolean onSearchRequested() {
-        root.setVisibility(View.INVISIBLE);
-//        setSearchIcon();
-        return super.onSearchRequested();
-    }*/
 
     public void setSearchIcon() {
         try {
