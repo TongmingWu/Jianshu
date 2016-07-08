@@ -1,4 +1,5 @@
 ## 学习Android的第二个个人APP,本项目模仿简书
+## PS:本项目仅供学习使用,官方如有任何问题请联系本人,我会立即删掉
 ### 数据来源:由python编写的[jianshu_spider](https://github.com/TongmingWu/jianshu_spider)做服务器,爬取简书官网的数据
 ### 已完成功能：
 首页<br>
