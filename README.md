@@ -1,6 +1,6 @@
 ## 学习Android的第二个个人APP,本项目模仿简书
 ### 数据来源:由python编写的[jianshu_spider](https://github.com/TongmingWu/jianshu_spider)做服务器,爬取简书官网的数据
-APP预览<br>
+### 已完成功能：
 首页<br>
 ![首页](http://i.imgur.com/xtZz1SH.png)<br>
 搜索<br>
@@ -15,3 +15,9 @@ APP预览<br>
 ![专题](http://i.imgur.com/LhW3BZU.png)<br>
 专题详情<br>
 ![专题详情](http://i.imgur.com/NLpE8NW.png)<br>
+### 未完成功能：
+* 用户登录功能，模拟登陆功能暂未完成，所以无法进行用户登录操作。
+* 关注操作
+* 评论操作
+* 编辑文章操作
+后面的功能需要基于登录操作，暂时无法使用
