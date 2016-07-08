@@ -2,16 +2,16 @@
 ### 数据来源:由python编写的[jianshu_spider](https://github.com/TongmingWu/jianshu_spider)做服务器,爬取简书官网的数据
 APP预览<br>
 首页<br>
-![首页](http://i.imgur.com/xtZz1SH.png)
-搜索</br>
-![搜索](http://i.imgur.com/IWRxpZa.png)
+![首页](http://i.imgur.com/xtZz1SH.png)<br>
+搜索<br>
+![搜索](http://i.imgur.com/IWRxpZa.png)<br>
 文章评论信息<br>
-![评论](http://i.imgur.com/ydTTJsL.png)
+![评论](http://i.imgur.com/ydTTJsL.png)<br>
 文章详情<br>
-![文章详情](http://i.imgur.com/yjE1Agi.png)
+![文章详情](http://i.imgur.com/yjE1Agi.png)<br>
 用户详情<br>
-![用户详情](http://i.imgur.com/lwgfK5g.png)
+![用户详情](http://i.imgur.com/lwgfK5g.png)<br>
 专题<br>
-![专题](http://i.imgur.com/LhW3BZU.png)
+![专题](http://i.imgur.com/LhW3BZU.png)<br>
 专题详情<br>
-![专题详情](http://i.imgur.com/NLpE8NW.png)
+![专题详情](http://i.imgur.com/NLpE8NW.png)<br>
